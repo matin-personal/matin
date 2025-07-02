@@ -54,6 +54,7 @@
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
+  text-align: right;
 }
 
 .menu-items {
@@ -72,18 +73,18 @@
   text-decoration: underline;
 }
 
-/* واکنش‌گرا برای موبایل */
+/* واکنش‌گرایی برای موبایل */
 @media (max-width: 768px) {
   .menu-items {
     display: none;
     flex-direction: column;
     background-color: #1e3a8a;
     position: absolute;
-    top: 60px;
+    top: 55px;
     right: 0;
     width: 100%;
-    text-align: center;
     padding: 1rem 0;
+    z-index: 1000;
   }
 
   .menu-items.open {
@@ -92,7 +93,6 @@
 
   .menu-toggle {
     display: block;
-    text-align: right;
   }
 }
   </style>
