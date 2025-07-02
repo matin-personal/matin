@@ -28,7 +28,121 @@
     gtag('config', 'G-BTFNVW51PZ');
   </script>
 
-  <!-- بارگذاری منوی همبرگری -->
+  <!-- استایل داخلی -->
+  <style>
+    body {
+      font-family: "Vazirmatn", sans-serif;
+      background-color: #f0f4f8;
+      color: #1f2937;
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #2563eb;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .contact-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      background-color: #e0e7ff;
+      padding: 10px 20px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #1e3a8a;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background-color: #c7d2fe;
+      transform: scale(1.02);
+    }
+
+    .contact-item img {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* منوی همبرگری */
+    .menu-bar {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      text-align: right;
+    }
+
+    .menu-items {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .menu-items a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-items a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .menu-items {
+        display: none;
+        flex-direction: column;
+        background-color: #1e3a8a;
+        position: absolute;
+        top: 55px;
+        right: 0;
+        width: 100%;
+        padding: 1rem 0;
+        z-index: 1000;
+      }
+
+      .menu-items.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+
+  <!-- بارگذاری منو و اسکریپت -->
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       fetch("menu.html")
@@ -37,82 +151,14 @@
           const nav = document.createElement("div");
           nav.innerHTML = data;
           document.body.insertBefore(nav, document.body.firstChild);
+
+          // بارگذاری اسکریپت منو بعد از بارگذاری HTML منو
+          const script = document.createElement("script");
+          script.src = "menu.js";
+          document.body.appendChild(script);
         });
     });
   </script>
-
-  <!-- استایل داخلی -->
-  <style>
-    .menu-bar {
-  background-color: #1e3a8a;
-  color: white;
-  padding: 1rem;
-  position: relative;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  text-align: right;
-}
-
-.menu-items {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.menu-items a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.menu-items a:hover {
-  text-decoration: underline;
-}
-
-/* واکنش‌گرایی برای موبایل */
-@media (max-width: 768px) {
-  .menu-items {
-    display: none;
-    flex-direction: column;
-    background-color: #1e3a8a;
-    position: absolute;
-    top: 55px;
-    right: 0;
-    width: 100%;
-    padding: 1rem 0;
-    z-index: 1000;
-  }
-
-  .menu-items.open {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-  </style>
-
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    fetch("menu.html")
-      .then(res => res.text())
-      .then(data => {
-        const nav = document.createElement("div");
-        nav.innerHTML = data;
-        document.body.insertBefore(nav, document.body.firstChild);
-
-        // بعد از بارگذاری منو، فایل جاوااسکریپت منو رو هم بارگذاری کن
-        const script = document.createElement("script");
-        script.src = "menu.js";
-        document.body.appendChild(script);
-      });
-  });
-</script>
 </head>
 <body>
 
