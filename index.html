@@ -9,22 +9,10 @@
   <meta name="author" content="Matin Mohammadi" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="متین محمدی | طراح سایت" />
-  <meta property="og:description" content="سایت رسمی متین محمدی، طراح سایت و توسعه‌دهنده فرانت‌اند از ارومیه." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://matin-mohammadi.ir/" />
-  <meta property="og:locale" content="fa_IR" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="متین محمدی | طراح سایت" />
-  <meta name="twitter:description" content="سایت رسمی متین محمدی، طراح سایت و توسعه‌دهنده وب. مشاهده نمونه‌کارها و اطلاعات تماس." />
-
   <!-- فاوآیکون -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-  <!-- Google Analytics -->
+  <!-- آنالیتیکس -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTFNVW51PZ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -33,7 +21,7 @@
     gtag('config', 'G-BTFNVW51PZ');
   </script>
 
-  <!-- استایل -->
+  <!-- استایل کلی و منو -->
   <style>
     html, body {
       height: 100%;
@@ -46,6 +34,58 @@
       font-family: "Vazirmatn", sans-serif;
       background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
       color: #111827;
+    }
+
+    nav.menu-bar {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      text-align: right;
+    }
+
+    .menu-items {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .menu-items a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-items a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .menu-items {
+        display: none;
+        flex-direction: column;
+        background-color: #1e3a8a;
+        position: absolute;
+        top: 55px;
+        right: 0;
+        width: 100%;
+        padding: 1rem 0;
+        z-index: 1000;
+      }
+
+      .menu-items.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
 
     main {
@@ -76,24 +116,26 @@
     }
   </style>
 
-  <!-- بارگذاری منو -->
+  <!-- اسکریپت همبرگری -->
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      fetch("menu.html")
-        .then(res => res.text())
-        .then(data => {
-          const nav = document.createElement("div");
-          nav.innerHTML = data;
-          document.body.insertBefore(nav, document.body.firstChild);
-
-          const script = document.createElement("script");
-          script.src = "menu.js";
-          document.body.appendChild(script);
-        });
-    });
+    function toggleMenu() {
+      const menu = document.getElementById("menuItems");
+      menu.classList.toggle("open");
+    }
   </script>
 </head>
 <body>
+
+  <!-- منوی همبرگری -->
+  <nav class="menu-bar">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu-items" id="menuItems">
+      <a href="index.html">صفحه اصلی</a>
+      <a href="contact.html">تماس با من</a>
+    </div>
+  </nav>
+
+  <!-- محتوای اصلی -->
   <main>
     <h1>متین محمدی | طراح سایت</h1>
     <p>
@@ -103,8 +145,10 @@
     </p>
   </main>
 
+  <!-- فوتر -->
   <footer>
     تمام حقوق محفوظ است © 2025
   </footer>
+
 </body>
 </html>
