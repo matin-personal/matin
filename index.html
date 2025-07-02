@@ -35,71 +35,76 @@
 
   <!-- استایل -->
   <style>
-    body {
-      font-family: "Vazirmatn", sans-serif;
-      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-      color: #111827;
-      margin: 0;
-      padding: 0;
-    }
+    .menu-bar {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 1rem;
+  position: relative;
+}
 
-    main {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      text-align: center;
-    }
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #2563eb;
-    }
+.menu-items {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
 
-    p {
-      font-size: 1.2rem;
-      line-height: 2;
-    }
+.menu-items a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      text-align: center;
-      color: #6b7280;
-    }
+.menu-items a:hover {
+  text-decoration: underline;
+}
 
-    /* منوی همبرگری */
-    nav {
-      background-color: #1e3a8a;
-      padding: 1rem;
-      color: white;
-      text-align: center;
-    }
+/* واکنش‌گرا برای موبایل */
+@media (max-width: 768px) {
+  .menu-items {
+    display: none;
+    flex-direction: column;
+    background-color: #1e3a8a;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+  }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-    }
+  .menu-items.open {
+    display: flex;
+  }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+  .menu-toggle {
+    display: block;
+    text-align: right;
+  }
+}
   </style>
 
-  <!-- بارگذاری منو -->
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      fetch("menu.html")
-        .then(res => res.text())
-        .then(data => {
-          const nav = document.createElement("div");
-          nav.innerHTML = data;
-          document.body.insertBefore(nav, document.body.firstChild);
-        });
-    });
-  </script>
+ <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    fetch("menu.html")
+      .then(res => res.text())
+      .then(data => {
+        const nav = document.createElement("div");
+        nav.innerHTML = data;
+        document.body.insertBefore(nav, document.body.firstChild);
+
+        // بعد از بارگذاری منو، فایل جاوااسکریپت منو رو هم بارگذاری کن
+        const script = document.createElement("script");
+        script.src = "menu.js";
+        document.body.appendChild(script);
+      });
+  });
+</script>
 </head>
 <body>
 

@@ -1,70 +1,7 @@
-<style>
-  .navbar {
-    background-color: #1e3a8a;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-
-  .navbar .brand {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  .navbar .menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-  .navbar-links {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .navbar-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  .navbar-links a:hover {
-    text-decoration: underline;
-  }
-
-  /* برای موبایل */
-  @media (max-width: 768px) {
-    .navbar .menu-toggle {
-      display: block;
-    }
-
-    .navbar-links {
-      display: none;
-      flex-direction: column;
-      background-color: #1e3a8a;
-      padding: 1rem;
-    }
-
-    .navbar-links.active {
-      display: flex;
-    }
-  }
-</style>
-
-<nav class="navbar">
-  <div class="brand">متین محمدی</div>
+<nav class="menu-bar">
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  <div class="navbar-links" id="navbar-links">
+  <div class="menu-items" id="menuItems">
     <a href="index.html">صفحه اصلی</a>
     <a href="contact.html">تماس با من</a>
   </div>
 </nav>
-
-<script>
-  function toggleMenu() {
-    const links = document.getElementById("navbar-links");
-    links.classList.toggle("active");
-  }
-</script>
