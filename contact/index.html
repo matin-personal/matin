@@ -91,27 +91,27 @@
 
   <!-- بارگذاری منو و اسکریپت -->
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      fetch("../menu.html")
-        .then(res => res.text())
-        .then(data => {
-          const nav = document.createElement("div");
-          nav.innerHTML = data;
-          document.body.insertBefore(nav, document.body.firstChild);
+  window.addEventListener("DOMContentLoaded", () => {
+    fetch("../menu.html")
+      .then(res => res.text())
+      .then(data => {
+        const nav = document.createElement("div");
+        nav.innerHTML = data;
+        document.body.insertBefore(nav, document.body.firstChild);
 
-          // اسکریپت منو
-          const script = document.createElement("script");
-          script.src = "../menu.js";
-          document.body.appendChild(script);
-        });
-    });
+        // بعد از وارد شدن منو، فایل JS رو لود کن
+        const script = document.createElement("script");
+        script.src = "../menu.js";
+        document.body.appendChild(script);
+      });
+  });
   </script>
 </head>
 <body>
 
   <h1>ارتباط با متین محمدی</h1>
   <p>
-    برای سفارش طراحی سایت، مشاوره در زمینه NFT، خدمات ادمینی یا همکاری در پروژه‌های دیجیتال، از راه‌های زیر با من در تماس باشید 👇
+    برای سفارش خدمات سایت، مشاوره در زمینه NFT، خدمات ادمینی یا همکاری در پروژه‌های دیجیتال، از راه‌های زیر با من در تماس باشید 👇
   </p>
 
   <div class="contact-box">
