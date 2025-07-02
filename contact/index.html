@@ -13,7 +13,7 @@
   <meta property="og:title" content="تماس با متین محمدی" />
   <meta property="og:description" content="برای همکاری با متین محمدی تماس بگیرید." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://matin-mohammadi.ir/contact.html" />
+  <meta property="og:url" content="https://matin-mohammadi.ir/contact" />
   <meta property="og:locale" content="fa_IR" />
 
   <!-- فاوآیکون -->
@@ -28,7 +28,7 @@
     gtag('config', 'G-BTFNVW51PZ');
   </script>
 
-  <!-- استایل داخلی -->
+  <!-- استایل -->
   <style>
     body {
       font-family: "Vazirmatn", sans-serif;
@@ -87,74 +87,21 @@
       font-size: 0.9rem;
       opacity: 0.7;
     }
-
-    /* منوی همبرگری */
-    .menu-bar {
-      background-color: #1e3a8a;
-      color: white;
-      padding: 1rem;
-      position: relative;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      text-align: right;
-    }
-
-    .menu-items {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .menu-items a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-items a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .menu-items {
-        display: none;
-        flex-direction: column;
-        background-color: #1e3a8a;
-        position: absolute;
-        top: 55px;
-        right: 0;
-        width: 100%;
-        padding: 1rem 0;
-        z-index: 1000;
-      }
-
-      .menu-items.open {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
   </style>
 
   <!-- بارگذاری منو و اسکریپت -->
   <script>
     window.addEventListener("DOMContentLoaded", () => {
-      fetch("menu.html")
+      fetch("../menu.html")
         .then(res => res.text())
         .then(data => {
           const nav = document.createElement("div");
           nav.innerHTML = data;
           document.body.insertBefore(nav, document.body.firstChild);
 
-          // بارگذاری اسکریپت منو بعد از بارگذاری HTML منو
+          // اسکریپت منو
           const script = document.createElement("script");
-          script.src = "menu.js";
+          script.src = "../menu.js";
           document.body.appendChild(script);
         });
     });
@@ -169,25 +116,25 @@
 
   <div class="contact-box">
     <a class="contact-item" href="https://wa.me/+989058586834" target="_blank">
-      <img src="icons/whatsapp.png" alt="WhatsApp" /> واتساپ
+      <img src="../icons/whatsapp.png" alt="WhatsApp" /> واتساپ
     </a>
     <a class="contact-item" href="https://t.me/Survival_Talisman_admin" target="_blank">
-      <img src="icons/telegram.png" alt="Telegram" /> تلگرام
+      <img src="../icons/telegram.png" alt="Telegram" /> تلگرام
     </a>
     <a class="contact-item" href="https://instagram.com/Survival_Talisman" target="_blank">
-      <img src="icons/instagram.png" alt="Instagram" /> اینستاگرام
+      <img src="../icons/instagram.png" alt="Instagram" /> اینستاگرام
     </a>
     <a class="contact-item" href="mailto:info@matin-mohammadi.ir">
-      <img src="icons/gmail.png" alt="Email" /> ایمیل
+      <img src="../icons/gmail.png" alt="Email" /> ایمیل
     </a>
     <a class="contact-item" href="https://eitaa.com/Survival_Talisman_admin" target="_blank">
-      <img src="icons/eitaa.png" alt="Eitaa" /> ایتا
+      <img src="../icons/eitaa.png" alt="Eitaa" /> ایتا
     </a>
     <a class="contact-item" href="https://rubika.ir/Survival_Talisman_admin" target="_blank">
-      <img src="icons/rubika.png" alt="Rubika" /> روبیکا
+      <img src="../icons/rubika.png" alt="Rubika" /> روبیکا
     </a>
     <a class="contact-item" href="https://ble.ir/Survival_Talisman_admin" target="_blank">
-      <img src="icons/baleh.png" alt="Baleh" /> بله
+      <img src="../icons/baleh.png" alt="Baleh" /> بله
     </a>
   </div>
 
