@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>متین محمدی | طراح سایت و توسعه‌دهنده فرانت‌اند</title>
-  <meta name="description" content="سایت شخصی متین محمدی، متولد ۱۳۸۳ از ارومیه. طراحی سایت‌های مدرن و ریسپانسیو با تمرکز بر سئو، امنیت و تجربه کاربری بالا." />
-  <meta name="keywords" content="متین محمدی, matin mohammadi, طراحی سایت, نمونه‌کار, طراح سایت ارومیه, طراح ایرانی, برنامه نویس" />
+  <meta name="description" content="سایت شخصی متین محمدی، طراح سایت از ارومیه. طراحی وب مدرن و بهینه‌سازی شده برای سئو و تجربه کاربری بالا." />
+  <meta name="keywords" content="متین محمدی, matin mohammadi, طراحی سایت, توسعه‌دهنده وب, نمونه‌کار طراحی سایت, ارومیه, فرانت‌اند" />
   <meta name="author" content="Matin Mohammadi" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph (برای شبکه‌های اجتماعی) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="متین محمدی | طراح سایت" />
-  <meta property="og:description" content="سایت رسمی متین محمدی، طراح سایت و توسعه‌دهنده وب از ارومیه." />
+  <meta property="og:description" content="سایت رسمی متین محمدی، طراح سایت و توسعه‌دهنده فرانت‌اند از ارومیه." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://matin-mohammadi.ir/" />
   <meta property="og:locale" content="fa_IR" />
@@ -19,7 +19,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="متین محمدی | طراح سایت" />
-  <meta name="twitter:description" content="سایت رسمی متین محمدی، طراح سایت از ارومیه. نمونه‌کارها و اطلاعات تماس" />
+  <meta name="twitter:description" content="سایت رسمی متین محمدی، طراح سایت و توسعه‌دهنده وب. مشاهده نمونه‌کارها و اطلاعات تماس." />
 
   <!-- فاوآیکون -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -33,18 +33,87 @@
     gtag('config', 'G-BTFNVW51PZ');
   </script>
 
-<!-- استایل خارجی (style.css) -->
-<link rel="stylesheet" href="style.css" />
+  <!-- استایل -->
+  <style>
+    body {
+      font-family: "Vazirmatn", sans-serif;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      color: #111827;
+      margin: 0;
+      padding: 0;
+    }
 
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #2563eb;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 2;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    /* منوی همبرگری */
+    nav {
+      background-color: #1e3a8a;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <!-- بارگذاری منو -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      fetch("menu.html")
+        .then(res => res.text())
+        .then(data => {
+          const nav = document.createElement("div");
+          nav.innerHTML = data;
+          document.body.insertBefore(nav, document.body.firstChild);
+        });
+    });
+  </script>
 </head>
 <body>
-  <h1>متین محمدی | طراح سایت</h1>
-  <p>
-    سلام! من <strong>متین محمدی</strong> هستم، متولد سال ۱۳۸۳ و ساکن ارومیه.  
-    این سایت شخصی من هست که در عین حال به عنوان نمونه‌کار طراحی سایت من هم شناخته میشه.  
-    از طریق این صفحه می‌تونید با نحوه کدنویسی، طراحی واکنش‌گرا، رعایت نکات سئو و ساختار حرفه‌ای آشنا بشید.
-  </p>
 
-  <footer>تمام حقوق محفوظ است &copy; 2025 - متین محمدی</footer>
+  <main>
+    <h1>متین محمدی | طراح سایت</h1>
+    <p>
+      سلام! من <strong>متین محمدی</strong> هستم، متولد 2005 و ساکن ارومیه.  
+      <br>این سایت، هم سایت شخصی من هست و هم نمونه کار، من مهارت های طراحی سایت، ادمین شبکه های اجتماعی و متخصص NFT دارم
+      <br>سایتم کاملاً واکنش‌گرا و بهینه برای موتورهای جستجو طراحی شده.
+    </p>
+  </main>
+
+  <footer>
+    تمام حقوق محفوظ است © 2025
+  </footer>
 </body>
 </html>
