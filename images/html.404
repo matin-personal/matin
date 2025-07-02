@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>صفحه پیدا نشد | ۴۰۴</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Vazirmatn", sans-serif;
+      background-color: #fdfdfd;
+      color: #333;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #d32f2f;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    a {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #1976d2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+    a:hover {
+      background-color: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <img src="images/404.webp" alt="خطای 404 - صفحه یافت نشد">
+  <h1>صفحه‌ای که به دنبال آن هستید پیدا نشد</h1>
+  <p>ممکن است آدرس اشتباه وارد شده باشد یا صفحه مورد نظر حذف شده باشد.</p>
+  <a href="index.html">بازگشت به صفحه اصلی</a>
+</body>
+</html>
