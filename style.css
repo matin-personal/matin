@@ -1,0 +1,45 @@
+/* فایل استایل اصلی سایت متین محمدی */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Vazirmatn", sans-serif;
+  background-color: #f4f7fb;
+  color: #333;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #1976d2;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #555;
+}
+
+a.button {
+  margin-top: 2rem;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #1976d2;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+a.button:hover {
+  background-color: #0d47a1;
+}
