@@ -89,23 +89,24 @@
     }
   </style>
 
-  <!-- بارگذاری منو و اسکریپت -->
-  <script>
+  
+  <!-- بارگذاری منو و اسکریپت از مسیر ریشه دامنه -->
+<script>
   window.addEventListener("DOMContentLoaded", () => {
-    fetch("../menu.html")
+    fetch("/menu.html")
       .then(res => res.text())
       .then(data => {
         const nav = document.createElement("div");
         nav.innerHTML = data;
         document.body.insertBefore(nav, document.body.firstChild);
 
-        // بعد از وارد شدن منو، فایل JS رو لود کن
+        // بعد از بارگذاری منو، فایل جاوااسکریپت منو رو هم بارگذاری کن
         const script = document.createElement("script");
-        script.src = "../menu.js";
+        script.src = "/menu.js";
         document.body.appendChild(script);
       });
   });
-  </script>
+</script>
 </head>
 <body>
 
