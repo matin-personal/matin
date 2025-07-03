@@ -186,8 +186,16 @@
     </a>
   </div>
 
-  <footer>
-    تمام حقوق محفوظ است © 2025
-  </footer>
+  <div id="footer-placeholder"></div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    fetch("/footer.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  });
+</script>
 </body>
 </html>
