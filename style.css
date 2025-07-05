@@ -73,3 +73,10 @@ a.button:hover {
     height: auto;
   }
 }
+#particles-js {
+  background: linear-gradient(135deg, #111, #222);
+}
+body {
+  position: relative;
+  z-index: 1;
+}
