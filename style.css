@@ -80,3 +80,35 @@ body {
   position: relative;
   z-index: 1;
 }
+:root {
+  --bg-color: #ffffff;     /* روشن (سفید شیری) */
+  --text-color: #111111;   /* مشکی ملایم */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1e1e1e;    /* دارک: قهوه‌ای مایل به خاکستری */
+    --text-color: #eeeeee;
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
