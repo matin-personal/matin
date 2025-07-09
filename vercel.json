@@ -12,3 +12,27 @@
     { "source": "/en/contact/", "destination": "/en/contact/index.html" }
   ]
 }
+{
+  "rewrites": [
+    { "source": "/en/", "destination": "/en/index.html" },
+    { "source": "/en", "destination": "/en/index.html" } // برای حالتی که /en بدون اسلش آخر وارد بشه
+  ],
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "en/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "contact/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "404.html",
+      "use": "@vercel/static"
+    }
+  ]
+}
