@@ -1,22 +1,8 @@
 {
   "builds": [
     {
-      "src": "**/*",
+      "src": "**",
       "use": "@vercel/static"
     }
-  ],
-  "rewrites": [
-    { "source": "/", "destination": "/fa/index.html" },
-    { "source": "/fa", "destination": "/fa/index.html" },
-    { "source": "/fa/", "destination": "/fa/index.html" },
-    { "source": "/fa/contact", "destination": "/fa/contact/index.html" },
-    { "source": "/fa/contact/", "destination": "/fa/contact/index.html" },
-
-    { "source": "/en", "destination": "/en/index.html" },
-    { "source": "/en/", "destination": "/en/index.html" },
-    { "source": "/en/contact", "destination": "/en/contact/index.html" },
-    { "source": "/en/contact/", "destination": "/en/contact/index.html" }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  ]
 }
