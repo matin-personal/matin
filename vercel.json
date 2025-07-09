@@ -1,27 +1,22 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/en/", "destination": "/en/index.html" },
-    { "source": "/en", "destination": "/en/index.html" },
-    { "source": "/contact/", "destination": "/contact/index.html" },
-    { "source": "/contact", "destination": "/contact/index.html" }
-  ],
   "builds": [
     {
-      "src": "index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "en/index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "contact/index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "404.html",
+      "src": "**/*",
       "use": "@vercel/static"
     }
-  ]
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/fa/index.html" },
+    { "source": "/fa", "destination": "/fa/index.html" },
+    { "source": "/fa/", "destination": "/fa/index.html" },
+    { "source": "/fa/contact", "destination": "/fa/contact/index.html" },
+    { "source": "/fa/contact/", "destination": "/fa/contact/index.html" },
+
+    { "source": "/en", "destination": "/en/index.html" },
+    { "source": "/en/", "destination": "/en/index.html" },
+    { "source": "/en/contact", "destination": "/en/contact/index.html" },
+    { "source": "/en/contact/", "destination": "/en/contact/index.html" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
