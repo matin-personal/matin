@@ -1,10 +1,3 @@
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log("✅ Service Worker registered", reg))
-      .catch(err => console.error("❌ Service Worker registration failed:", err));
-  });
-}
 function switchLang() {
   const currentPath = window.location.pathname;
   if (currentPath.startsWith("/fa")) {
