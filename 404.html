@@ -19,23 +19,33 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      overflow: hidden; /* جلوگیری از اسکرول غیرضروری */
     }
     img {
       max-width: 90%;
       height: auto;
       margin-bottom: 20px;
+      border-radius: 8px; /* گوشه‌های گرد برای جذابیت */
     }
     p {
       font-size: 1.2rem;
+      max-width: 600px; /* محدود کردن عرض متن */
+      margin-bottom: 20px;
+    }
+    .timestamp {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 10px;
     }
     a {
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin: 10px;
+      padding: 12px 25px;
       background-color: #1976d2;
       color: #fff;
       text-decoration: none;
       border-radius: 8px;
       transition: background-color 0.3s;
+      display: inline-block; /* بهبود چیدمان لینک‌ها */
     }
     a:hover {
       background-color: #0d47a1;
@@ -43,9 +53,10 @@
   </style>
 </head>
 <body>
-  <img src="images/404.webp" alt="خطای 404 - صفحه یافت نشد">
-  <p>ممکن است آدرس اشتباه وارد شده باشد یا صفحه مورد نظر حذف شده باشد.</p>
-  <a href="/fa/">بازگشت به صفحه اصلی (فارسی)</a>
-  <a href="/en/">Back to Home (English)</a>
+  <img src="images/404.webp" alt="خطای 404 - صفحه یافت نشد" onerror="this.src='https://via.placeholder.com/400';">
+  <p>ممکن است آدرس اشتباه وارد شده باشد یا صفحه مورد نظر حذف شده باشد. لطفاً دوباره تلاش کنید یا به صفحه اصلی بازگردید.</p>
+  <div class="timestamp">تاریخ بررسی: 09 ژوئیه 2025، 11:29 صبح</div>
+  <a href="/">بازگشت به صفحه اصلی (فارسی)</a>
+  <a href="/en/index.html">Back to Home (English)</a>
 </body>
 </html>
