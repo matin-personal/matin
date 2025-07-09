@@ -1,4 +1,4 @@
-const CACHE_NAME = 'matin-cache-v1';
+const CACHE_NAME = 'matin-cache-v2'; // ✅ ورژن جدید
 const urlsToCache = [
   '/',
   '/index.html',
@@ -8,6 +8,7 @@ const urlsToCache = [
   '/menu.js',
   '/menu.html',
   '/footer.html',
+  '/header.html',
   '/favicon.png',
   '/favicon.ico',
   '/404.html',
@@ -17,25 +18,28 @@ const urlsToCache = [
   '/icons/icon1.png'
 ];
 
-// نصب
+// نصب → کش کردن فایل‌ها
 self.addEventListener('install', event => {
+  self.skipWaiting(); // ❗ فورس می‌کنه service worker سریع فعال شه
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
 });
 
-// فعال‌سازی و پاک‌سازی کش قدیمی
+// فعال‌سازی → حذف کش قدیمی
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.map(key => {
-        if (key !== CACHE_NAME) return caches.delete(key);
-      }))
+      Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) return caches.delete(key);
+        })
+      )
     )
   );
 });
 
-// واکشی
+// واکشی فایل‌ها
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response =>
