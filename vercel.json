@@ -1,21 +1,10 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/fa/index.html" },
-    { "source": "/fa", "destination": "/fa/index.html" },
-    { "source": "/fa/", "destination": "/fa/index.html" },
-    { "source": "/fa/contact", "destination": "/fa/contact/index.html" },
-    { "source": "/fa/contact/", "destination": "/fa/contact/index.html" },
-    
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/en/", "destination": "/en/index.html" },
     { "source": "/en", "destination": "/en/index.html" },
-    { "source": "/en/", "destination": "/en/index.html" },
-    { "source": "/en/contact", "destination": "/en/contact/index.html" },
-    { "source": "/en/contact/", "destination": "/en/contact/index.html" }
-  ]
-}
-{
-  "rewrites": [
-    { "source": "/en/", "destination": "/en/index.html" },
-    { "source": "/en", "destination": "/en/index.html" } // برای حالتی که /en بدون اسلش آخر وارد بشه
+    { "source": "/contact/", "destination": "/contact/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" }
   ],
   "builds": [
     {
