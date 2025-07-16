@@ -1,3 +1,4 @@
+/*
 function switchLang() {
   const currentPath = window.location.pathname;
   if (currentPath.startsWith("/fa")) {
@@ -105,3 +106,5 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => showMessage("ربات", response), 500);
   }
 });
+
+*/
