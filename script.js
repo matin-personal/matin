@@ -57,3 +57,62 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.add("dark-mode");
   }
 });
+// در script.js
+function toggleLanguage() {
+  const currentLang = document.documentElement.lang;
+  const newLang = currentLang === 'fa' ? 'en' : 'fa';
+  
+  // تغییر جهت متن
+  document.documentElement.dir = newLang === 'fa' ? 'rtl' : 'ltr';
+  
+  // ریدایرکت به نسخه زبانی صحیح
+  window.location.href = newLang === 'fa' 
+    ? window.location.pathname.replace('/en/', '/fa/') 
+    : window.location.pathname.replace('/fa/', '/en/');
+}
+// آپدیت متن دکمه بر اساس زبان
+function updateThemeButton() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const isPersian = document.documentElement.lang === 'fa';
+  
+  btn.textContent = isPersian
+    ? (isDark ? 'حالت روشن' : 'حالت تاریک')
+    : (isDark ? 'Light Mode' : 'Dark Mode');
+}
+// تبدیل تاریخ
+function updateFooterDates() {
+  const now = new Date();
+  
+  // سال شمسی
+  const persianDate = new Intl.DateTimeFormat('fa-IR', {
+    year: 'numeric'
+  }).format(now);
+  document.getElementById('persian-year').textContent = persianDate;
+  
+  // سال میلادی
+  document.getElementById('gregorian-year').textContent = now.getFullYear();
+}
+
+// سیستم تم
+function applyThemeSettings() {
+  const savedTheme = localStorage.getItem('theme') || 
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  
+  document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+// مقداردهی اولیه
+document.addEventListener('DOMContentLoaded', () => {
+  updateFooterDates();
+  applyThemeSettings();
+  
+  // تنظیم زبان اولیه
+  if (!localStorage.getItem('lang')) {
+    const userLang = navigator.language.startsWith('fa') ? 'fa' : 'en';
+    localStorage.setItem('lang', userLang);
+    document.documentElement.lang = userLang;
+  }
+});
