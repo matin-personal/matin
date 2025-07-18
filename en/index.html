@@ -3,170 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matin Mohammadi | Web Designer & Frontend Developer</title>
-  <meta name="description" content="Personal website of Matin Mohammadi, a web designer from Urmia. Modern and SEO-friendly web design." />
-  <meta name="keywords" content="Matin Mohammadi, Web Designer, Frontend Developer, Portfolio, SEO, Responsive Design" />
-  <meta name="author" content="Matin Mohammadi" />
-  <meta name="robots" content="index, follow" />
-  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#000000">
-  <script src="/js/lang-switch.js"></script>
+  <title>Matin Mohammadi | Web Designer</title>
+  <meta name="description" content="Professional web designer and frontend developer from Iran" />
   <link rel="canonical" href="https://matin-mohammadi.ir/en/" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Matin Mohammadi",
-    "url": "https://matin-mohammadi.ir/en",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://matin-mohammadi.ir/en/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: sans-serif;
-      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-      color: #111827;
-    }
-    nav.menu-bar {
-      background-color: #1e3a8a;
-      color: white;
-      padding: 1rem;
-      position: relative;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      text-align: right;
-    }
-    .menu-items {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .menu-items a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .menu-items a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-      .menu-items { display: none; flex-direction: column; background-color: #1e3a8a; position: absolute; top: 55px; right: 0; width: 100%; padding: 1rem 0; z-index: 1000; }
-      .menu-items.open { display: flex; }
-      .menu-toggle { display: block; }
-    }
-    main {
-      flex: 1;
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      text-align: center;
-    }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #2563eb; }
-    p { font-size: 1.2rem; line-height: 2; }
-    .profile-thumbnail { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 2rem auto; display: block; transition: transform 0.3s ease; }
-    .profile-thumbnail:hover { transform: scale(1.05); }
-    .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); text-align: center; padding-top: 5%; }
-    .modal-content { max-width: 90%; max-height: 80%; border-radius: 15px; box-shadow: 0 0 10px #fff; }
-  </style>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menuItems");
-      menu.classList.toggle("open");
-    }
-  </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://matin-mohammadi.ir/en/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Contact Me",
-      "item": "https://matin-mohammadi.ir/en/contact/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Matin Mohammadi's Website",
-  "url": "https://matin-mohammadi.ir/en/"
-}
-</script>
+  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
+  <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-<div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-  particlesJS.load('particles-js', '/particles.json', function() {
-    console.log('particles.js loaded - callback');
-  });
-</script>
+<body class="page-en-index">
+  <div id="particles-js"></div>
 
-<nav class="menu-bar">
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  <div class="menu-items" id="menuItems">
-    <a href="index.html">Home</a>
-    <a href="contact">Contact</a>
-  </div>
-</nav>
-
-<main>
-  <h1>
-    <div class="profile-wrapper">
-      <img loading="lazy" src="/images/profile.jpg" alt="Matin Mohammadi" class="profile-thumbnail" onclick="openFullImage()" />
+  <nav class="menu-bar">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu-items" id="menuItems">
+      <a href="/en/">Home</a>
+      <a href="/en/contact/">Contact</a>
     </div>
-    <div id="imageModal" class="modal" onclick="closeFullImage()">
-      <img class="modal-content" id="fullImage" src="/images/profile.jpg" alt="Matin Mohammadi" />
-    </div>
-    Matin Mohammadi<br>Web Designer
-  </h1>
-  <p>
-    Hi! I'm <strong>Matin Mohammadi</strong>, born in 2005 and living in Urmia.
-    <br>This is both my personal and portfolio website.
-    <br>I offer services in website design, social media management, and NFTs.
-    <br>My website is fully responsive and optimized for search engines.
-  </p>
-</main>
+  </nav>
 
-<div id="footer-placeholder"></div>
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    fetch("/footer.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("footer-placeholder").innerHTML = data;
-      });
-  });
+  <main>
+    <h1>
+      <img src="/images/profile.jpg" alt="Matin Mohammadi" class="profile-thumbnail" onclick="openFullImage()" />
+      Matin Mohammadi<br>
+      Web Designer
+    </h1>
+    <p>
+      Hi! I'm <strong>Matin Mohammadi</strong>, a web designer and developer from Urmia, Iran.
+      <br>This website serves as both my personal site and professional portfolio.
+    </p>
+  </main>
 
-  function openFullImage() {
-    document.getElementById("imageModal").style.display = "block";
-  }
-  function closeFullImage() {
-    document.getElementById("imageModal").style.display = "none";
-  }
-</script>
+  <div id="footer-placeholder"></div>
+  <script src="/script.js" defer></script>
 </body>
 </html>
