@@ -122,3 +122,78 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onerror = function(message, source, lineno) {
   console.error(`خطا: ${message} در ${source}:${lineno}`);
 };
+// سیستم تم
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } else {
+    document.documentElement.setAttribute('data-theme', systemDark ? 'dark' : 'light');
+  }
+}
+
+// سیستم زبان
+function initLanguage() {
+  const savedLang = localStorage.getItem('lang');
+  const browserLang = navigator.language.startsWith('fa') ? 'fa' : 'en';
+  const defaultLang = savedLang || browserLang;
+  
+  document.documentElement.lang = defaultLang;
+  document.documentElement.dir = defaultLang === 'fa' ? 'rtl' : 'ltr';
+  updateLangButton();
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+}
+
+function toggleLanguage() {
+  const currentLang = document.documentElement.lang;
+  const newLang = currentLang === 'fa' ? 'en' : 'fa';
+  
+  document.documentElement.lang = newLang;
+  document.documentElement.dir = newLang === 'fa' ? 'rtl' : 'ltr';
+  localStorage.setItem('lang', newLang);
+  
+  // ریدایرکت به صفحه معادل در زبان دیگر
+  const path = window.location.pathname;
+  const newPath = newLang === 'fa' 
+    ? path.replace('/en/', '/fa/') 
+    : path.replace('/fa/', '/en/');
+  
+  window.location.pathname = newPath || `/${newLang}/`;
+}
+
+function updateLangButton() {
+  const btn = document.getElementById('lang-toggle');
+  if (!btn) return;
+  
+  const isPersian = document.documentElement.lang === 'fa';
+  btn.innerHTML = isPersian 
+    ? '<img src="/images/flag-usa.png" alt="EN" width="20"> English' 
+    : '<img src="/images/flag-iran.png" alt="FA" width="20"> فارسی';
+}
+
+// مقداردهی اولیه
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initLanguage();
+  
+  // اضافه کردن دکمه‌ها
+  const controlDiv = document.createElement('div');
+  controlDiv.className = 'control-buttons';
+  controlDiv.innerHTML = `
+    <button class="theme-toggle" onclick="toggleTheme()">
+      🌓 ${document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light' : 'Dark'}
+    </button>
+    <button class="lang-toggle" id="lang-toggle" onclick="toggleLanguage()"></button>
+  `;
+  document.body.prepend(controlDiv);
+  
+  updateLangButton();
+});
