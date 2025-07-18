@@ -1,22 +1,45 @@
-/* فایل استایل اصلی سایت متین محمدی */
+/* style.css - متین محمدی */
 
+/* پایه و فونت */
 body {
   margin: 0;
   padding: 2rem;
   font-family: "Vazirmatn", sans-serif;
-  background-color: #f4f7fb;
-  color: #333;
   text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
+/* متغیرهای تم روشن/تاریک */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --primary-color: #1976d2;
+  --card-bg: #f0f4f8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1e1e1e;
+    --text-color: #eeeeee;
+  }
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+}
+
+/* تیتر و پاراگراف‌ها */
 h1 {
   font-size: 2.5rem;
-  color: #1976d2;
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
@@ -28,113 +51,92 @@ p {
   color: #555;
 }
 
-a.button {
+/* دکمه‌ها */
+a.button, .lang-switch {
   margin-top: 2rem;
   display: inline-block;
   padding: 12px 24px;
-  background-color: #1976d2;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-a.button:hover {
-  background-color: #0d47a1;
-}
-@media (min-width: 1600px) {
-  body {
-    font-size: 1.2rem;
-  }
-
-  main {
-  max-width: 800px;
-  width: 100%;
-  margin: auto;
-  padding: 2rem;
-}
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  .contact-box {
-    gap: 1.5rem;
-  }
-
-  .contact-item {
-    font-size: 1.2rem;
-    padding: 16px 28px;
-  }
-
-  img, .profile-image {
-    max-width: 100%;
-    height: auto;
-  }
-}
-#particles-js {
-  background: linear-gradient(135deg, #111, #222);
-}
-body {
-  position: relative;
-  z-index: 1;
-}
-:root {
-  --bg-color: #ffffff;     /* روشن (سفید شیری) */
-  --text-color: #111111;   /* مشکی ملایم */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #1e1e1e;    /* دارک: قهوه‌ای مایل به خاکستری */
-    --text-color: #eeeeee;
-  }
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-}
-:root {
-  --bg-color: #ffffff;
-  --text-color: #111111;
-}
-
-[data-theme="dark"] {
-  --bg-color: #121212;
-  --text-color: #e0e0e0;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-.lang-switch {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 6px 14px;
-  background-color: #1e3a8a;
+  background-color: var(--primary-color);
   color: white;
   text-decoration: none;
   border-radius: 10px;
   font-weight: bold;
   transition: background-color 0.3s;
 }
+
+a.button:hover,
 .lang-switch:hover {
-  background-color: #3b82f6;
+  background-color: #0d47a1;
 }
-/* Chatbot Styles */
+
+/* ریسپانسیو برای نمایشگرهای بزرگ */
+@media (min-width: 1600px) {
+  body {
+    font-size: 1.2rem;
+  }
+  main {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+/* نوار منو */
+nav.menu-bar {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 1rem;
+  position: relative;
+}
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-align: right;
+}
+.menu-items {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.menu-items a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.menu-items a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .menu-items {
+    display: none;
+    flex-direction: column;
+    background-color: #1e3a8a;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 1000;
+  }
+  .menu-items.open {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* ربات چت */
 #chatbot-container {
   position: fixed;
   bottom: 20px;
   left: 20px;
   z-index: 9999;
-  font-family: sans-serif;
 }
-
 #chatbot-button {
   background-color: #4f46e5;
   color: white;
@@ -142,26 +144,21 @@ body {
   padding: 14px;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   font-size: 20px;
-  transition: background 0.3s;
 }
-
 #chatbot-button:hover {
   background-color: #3730a3;
 }
-
 #chatbot-box {
   background: white;
   width: 300px;
   height: 400px;
   border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
-
 #chatbot-header {
   background: #4f46e5;
   color: white;
@@ -169,207 +166,43 @@ body {
   text-align: center;
   border-radius: 15px 15px 0 0;
 }
-
 #chatbot-messages {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
   font-size: 14px;
 }
-
 #chatbot-input {
-  border: none;
   border-top: 1px solid #ccc;
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  outline: none;
-  font-size: 14px;
 }
-
 .hidden {
   display: none;
 }
-<!-- استایل کلی و منو -->
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      font-family: "Vazirmatn", sans-serif;
-      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-      color: #111827;
-    }
-
-    nav.menu-bar {
-      background-color: #1e3a8a;
-      color: white;
-      padding: 1rem;
-      position: relative;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      text-align: right;
-    }
-
-    .menu-items {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .menu-items a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-items a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .menu-items {
-        display: none;
-        flex-direction: column;
-        background-color: #1e3a8a;
-        position: absolute;
-        top: 55px;
-        right: 0;
-        width: 100%;
-        padding: 1rem 0;
-        z-index: 1000;
-      }
-
-      .menu-items.open {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    main {
-      flex: 1;
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #2563eb;
-    }
-
-    p {
-      font-size: 1.2rem;
-      line-height: 2;
-    }
-
-    footer {
-      font-size: 0.9rem;
-      text-align: center;
-      color: #6b7280;
-      padding: 1rem;
-      background-color: transparent;
-    }
-.profile-pic {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 1.5rem auto;
-  display: block;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+/* استایل زبان انگلیسی */
+html[lang="en"] body {
+  font-family: sans-serif;
+  direction: ltr;
+  text-align: left;
 }
-.profile-thumbnail {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  margin: 2rem auto;
-  display: block;
-  transition: transform 0.3s ease;
+html[lang="en"] .menu-items {
+  justify-content: flex-start;
 }
-.profile-thumbnail:hover {
-  transform: scale(1.05);
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  text-align: center;
-  padding-top: 5%;
-}
-.modal-content {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 15px;
-  box-shadow: 0 0 10px #fff;
-}
-/* ========================= */
-/* 🌐 بهینه‌سازی برای نمایشگرهای خیلی بزرگ */
-/* ========================= */
-@media (min-width: 1600px) {
-  body {
-    font-size: 1.2rem;
-  }
-
-  main {
-    max-width: 1000px;
-    padding: 3rem;
-  }
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  .contact-box {
-    gap: 1.5rem;
-  }
-
-  .contact-item {
-    font-size: 1.2rem;
-    padding: 16px 28px;
-  }
-
-  img, .profile-image {
-    max-width: 100%;
-    height: auto;
+@media (max-width: 768px) {
+  html[lang="en"] .menu-items {
+    right: auto;
+    left: 0;
   }
 }
-  </style>
-/* ========================
-   استایل‌های اختصاصی صفحه تماس
-   ======================== */
+
+/* استایل صفحه تماس */
 .page-contact {
   background-color: #f0f4f8;
-  text-align: center;
   padding: 2rem;
 }
-
-.page-contact h1 {
-  font-size: 2.5rem;
-  color: #2563eb;
-  margin-bottom: 1rem;
-}
-
 .page-contact .contact-box {
   display: flex;
   flex-direction: column;
@@ -377,7 +210,6 @@ body {
   gap: 1rem;
   margin-top: 2rem;
 }
-
 .page-contact .contact-item {
   background-color: #e0e7ff;
   padding: 10px 20px;
@@ -389,297 +221,68 @@ body {
   width: fit-content;
   transition: all 0.3s ease;
 }
-
 .page-contact .contact-item:hover {
   background-color: #c7d2fe;
   transform: scale(1.02);
 }
-
 .page-contact .contact-item img {
   width: 24px;
   height: 24px;
   border-radius: 5px;
 }
 
-/* بهینه‌سازی برای نمایشگرهای بزرگ */
-@media (min-width: 1600px) {
-  .page-contact {
-    font-size: 1.2rem;
-  }
-  .page-contact .contact-item {
-    padding: 16px 28px;
-  }
-}
-/* ========================
-   English Version Styles
-   ======================== */
-html[lang="en"] body {
-  font-family: sans-serif;
-  direction: ltr;
-  text-align: left;
-}
-
-.page-en-index {
-  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-}
-
-.page-en-contact {
-  background-color: #f0f4f8;
-}
-
-/* Contact Page Specific */
-.page-en-contact .contact-box {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  margin: 2rem auto;
-  max-width: 600px;
-}
-
-.page-en-contact .contact-item {
-  background-color: #e0e7ff;
-  padding: 12px 24px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #1e3a8a;
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-.page-en-contact .contact-item:hover {
-  background-color: #c7d2fe;
-  transform: translateX(5px);
-}
-
-/* RTL/LTR Fixes */
-html[lang="en"] .menu-items {
-  justify-content: flex-start;
-}
-
-@media (max-width: 768px) {
-  html[lang="en"] .menu-items {
-    right: auto;
-    left: 0;
-  }
-}
-/* مخفی کردن نسخه غیرفعال */
-.footer-content { display: block; }
-.lang-fa, .lang-en { display: none; }
-
-html[lang="fa"] .lang-fa,
-html[lang="en"] .lang-en {
-  display: block;
-}
-
-/* استایل پایه فوتر */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-}
-
-.lang-switch {
-  display: inline-block;
-  margin: 10px 0;
-  color: #2563eb;
-  text-decoration: none;
-}
-<!-- آیکن ربات چت -->
-<style>
-  #chatbot-toggle {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #4f46e5;
-    color: white;
-    border-radius: 50%;
-    border: none;
-    width: 60px;
-    height: 60px;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 9999;
-    transition: background-color 0.3s ease;
-  }
-  #chatbot-toggle:hover {
-    background-color: #4338ca;
-  }
-
-  #chatbot-box {
-    position: fixed;
-    bottom: 90px;
-    left: 20px;
-    width: 300px;
-    height: 400px;
-    background: white;
-    border: 2px solid #ccc;
-    border-radius: 15px;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    z-index: 9998;
-  }
-
-  #chatbot-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    margin-bottom: 10px;
-  }
-
-  #chatbot-input {
-    display: flex;
-    gap: 5px;
-  }
-
-  #chatbot-input input {
-    flex-grow: 1;
-    padding: 6px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-
-  #chatbot-input button {
-    background: #4f46e5;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-</style>
-.lang-button {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: #1e3a8a;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-/* در style.css */
-/* ========================
-   استایل‌های صفحه 404
-   ======================== */
+/* استایل صفحه 404 */
 .page-404 {
-    margin: 0;
-    padding: 0;
-    font-family: "Vazirmatn", sans-serif;
-    background-color: #fdfdfd;
-    color: #333;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.page-404 img {
-    max-width: 90%;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.page-404 p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.page-404 .timestamp {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 10px;
-}
-
-.page-404 .back-link {
-    margin: 10px;
-    padding: 12px 25px;
-    background-color: #1976d2;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-    display: inline-block;
-}
-
-.page-404 .back-link:hover {
-    background-color: #0d47a1;
-}
-/* سیستم تم تاریک/روشن */
-:root {
-  --bg-color: #ffffff;
-  --text-color: #333333;
-  --primary-color: #2563eb;
-  --card-bg: #f0f4f8;
-}
-
-[data-theme="dark"] {
-  --bg-color: #1a202c;
-  --text-color: #e2e8f0;
-  --primary-color: #4299e1;
-  --card-bg: #2d3748;
-}
-
-/* صفحه تماس */
-.contact-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.contact-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem;
-  background: var(--bg-color);
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.page-404 img {
+  max-width: 90%;
+  height: auto;
+  margin-bottom: 20px;
   border-radius: 8px;
-  transition: transform 0.3s ease;
 }
-
-.contact-card:hover {
-  transform: translateY(-5px);
+.page-404 p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.6;
 }
-
-/* دکمه‌های زبان و تم */
+.page-404 .back-link {
+  padding: 12px 25px;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.page-404 .back-link:hover {
+  background-color: #0d47a1;
+}
 .control-buttons {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 10px;
+  right: 10px;
   display: flex;
-  gap: 1rem;
-  z-index: 1000;
+  gap: 10px;
+  z-index: 9999;
 }
 
-.theme-toggle, .lang-toggle {
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  background: var(--primary-color);
+.control-buttons button {
+  background-color: #1976d2;
   color: white;
   border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.control-buttons button:hover {
+  background-color: #0d47a1;
 }
