@@ -286,3 +286,70 @@ html[lang="en"] .menu-items {
 .control-buttons button:hover {
   background-color: #0d47a1;
 }
+/* در style.css */
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  text-align: right;
+  line-height: 1.8;
+}
+
+html[lang="en"] body {
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+/* سیستم فوتر */
+footer {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: var(--footer-bg, #f8f9fa);
+  color: var(--footer-text, #333);
+}
+
+.footer-content {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-fa {
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.lang-en {
+  font-family: 'Inter', sans-serif;
+}
+
+/* نمایش نسخه صحیح بر اساس زبان */
+html[lang="fa"] .lang-fa,
+html[lang="en"] .lang-en {
+  display: flex;
+}
+
+/* دکمه تغییر زبان */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  background: var(--lang-btn-bg, #e9ecef);
+  color: var(--lang-btn-text, #495057);
+  transition: all 0.3s ease;
+}
+
+.lang-switch:hover {
+  background: var(--lang-btn-hover, #dee2e6);
+}
+
+/* سال تاریخ */
+#persian-year,
+#gregorian-year {
+  font-weight: bold;
+}
+
+/* لوگوها */
+.certification,
+.badges {
+  margin-top: 1rem;
+}
