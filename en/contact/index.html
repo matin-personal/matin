@@ -1,290 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Me | Matin Mohammadi</title>
-  <meta name="description" content="Ways to contact Matin Mohammadi - Web designer, frontend developer, social media admin, and NFT consultant." />
-  <meta name="keywords" content="Contact Matin Mohammadi, Web Design, NFT, Frontend Developer" />
-  <meta name="author" content="Matin Mohammadi" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Contact Matin Mohammadi" />
-  <meta property="og:description" content="Feel free to contact Matin Mohammadi for collaboration or support." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://matin-mohammadi.ir/en/contact/" />
-  <meta property="og:locale" content="en_US" />
-  <meta name="msvalidate.01" content="E2EBBDB65A41B68EC644B9848E4187B8" />
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTFNVW51PZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-BTFNVW51PZ');
-  </script>
-
-  <!-- Style -->
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f0f4f8;
-      color: #1f2937;
-      margin: 0;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #2563eb;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      line-height: 1.8;
-    }
-
-    .contact-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .contact-item {
-      background-color: #e0e7ff;
-      padding: 10px 20px;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #1e3a8a;
-      width: fit-content;
-      transition: all 0.3s ease;
-    }
-
-    .contact-item:hover {
-      background-color: #c7d2fe;
-      transform: scale(1.02);
-    }
-
-    .contact-item img {
-      width: 24px;
-      height: 24px;
-      border-radius: 5px;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-
-    nav.menu-bar {
-      background-color: #1e3a8a;
-      color: white;
-      padding: 1rem;
-      position: relative;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      text-align: right;
-    }
-
-    .menu-items {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .menu-items a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .menu-items a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .menu-items {
-        display: none;
-        flex-direction: column;
-        background-color: #1e3a8a;
-        position: absolute;
-        top: 55px;
-        right: 0;
-        width: 100%;
-        padding: 1rem 0;
-        z-index: 1000;
-      }
-
-      .menu-items.open {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    @media (min-width: 1600px) {
-      body {
-        font-size: 1.2rem;
-      }
-
-      main {
-        max-width: 1000px;
-        padding: 3rem;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-
-      .contact-box {
-        gap: 1.5rem;
-      }
-
-      .contact-item {
-        font-size: 1.2rem;
-        padding: 16px 28px;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-    }
-  </style>
-
-  <!-- Load Menu -->
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      fetch("/menu.html")
-        .then(res => res.text())
-        .then(data => {
-          const nav = document.createElement("div");
-          nav.innerHTML = data;
-          document.body.insertBefore(nav, document.body.firstChild);
-
-          const script = document.createElement("script");
-          script.src = "/menu.js";
-          document.body.appendChild(script);
-        });
-    });
-  </script>
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://matin-mohammadi.ir/en/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Contact",
-        "item": "https://matin-mohammadi.ir/en/contact/"
-      }
-    ]
-  }
-  </script>
+  <title>Contact | Matin Mohammadi</title>
+  <meta name="description" content="Contact Matin Mohammadi for web design and development services" />
   <link rel="canonical" href="https://matin-mohammadi.ir/en/contact/" />
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "s95lknib0w");
-  </script>
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#000000">
-  <script src="/js/lang-switch.js"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://matin-mohammadi.ir/en/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Contact Me",
-      "item": "https://matin-mohammadi.ir/en/contact/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Matin Mohammadi's Website",
-  "url": "https://matin-mohammadi.ir/en/"
-}
-</script>
+  <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
+  <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-<div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+<body class="page-en-contact">
+  <div id="particles-js"></div>
 
-  <h1>Contact Matin Mohammadi</h1>
-  <p>For web design, NFT consulting, or digital collaboration, contact me via:</p>
+  <h1>Contact Me</h1>
+  <p>For professional inquiries or collaborations:</p>
 
   <div class="contact-box">
-    <a class="contact-item" href="https://wa.me/+989058586834" target="_blank">
-      <img loading="lazy" src="/icons/whatsapp.png" alt="WhatsApp" /> WhatsApp
-    </a>
-    <a class="contact-item" href="https://t.me/Survival_Talisman_admin" target="_blank">
-      <img loading="lazy" src="/icons/telegram.png" alt="Telegram" /> Telegram
-    </a>
-    <a class="contact-item" href="https://instagram.com/Survival_Talisman" target="_blank">
-      <img loading="lazy" src="/icons/instagram.png" alt="Instagram" /> Instagram
-    </a>
-    <a class="contact-item" href="mailto:info@matin-mohammadi.ir">
-      <img loading="lazy" src="/icons/gmail.png" alt="Email" /> Email
-    </a>
-  </div>
+  <!-- عمومی برای فارسی و انگلیسی -->
+  <a class="contact-item" href="https://wa.me/+989058586834" target="_blank" rel="noopener">
+    <img src="/icons/whatsapp.png" alt="WhatsApp" /> WhatsApp
+  </a>
+  <a class="contact-item" href="https://t.me/Survival_Talisman_admin" target="_blank" rel="noopener">
+    <img src="/icons/telegram.png" alt="Telegram" /> Telegram
+  </a>
+  <a class="contact-item" href="mailto:info@matin-mohammadi.ir" rel="noopener">
+    <img src="/icons/gmail.png" alt="Email" /> Email
+  </a>
+  <a class="contact-item" href="https://x.com/matin2mohammadi" target="_blank" rel="noopener">
+    <img src="/icons/x.png" alt="X (Twitter)" /> X (Twitter)
+  </a>
+  <a class="contact-item" href="https://www.linkedin.com/in/matin-mohammadi-a988a3271" target="_blank" rel="noopener">
+    <img src="/icons/linkedin.png" alt="LinkedIn" /> LinkedIn
+  </a>
+</div>
 
   <div id="footer-placeholder"></div>
-
-  <!-- Footer Loader -->
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      fetch("/footer.html")
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById("footer-placeholder").innerHTML = data;
-        });
-    });
-  </script>
-
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('particles.js loaded - callback');
-    });
-  </script>
+  <script src="/script.js" defer></script>
 </body>
 </html>

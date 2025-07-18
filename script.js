@@ -1,110 +1,121 @@
-/*
-function switchLang() {
-  const currentPath = window.location.pathname;
-  if (currentPath.startsWith("/fa")) {
-    window.location.href = currentPath.replace("/fa", "/en");
-  } else if (currentPath.startsWith("/en")) {
-    window.location.href = currentPath.replace("/en", "/fa");
-  } else {
-    window.location.href = "/en/";
-  }
+// --- توابع عمومی ---
+function toggleMenu() {
+  const menu = document.getElementById("menuItems");
+  menu.classList.toggle("open");
 }
-function loadHeader() {
-  fetch("/header.html")
-    .then(res => res.text())
-    .then(data => {
-      const header = document.createElement("div");
-      header.innerHTML = data;
-      document.body.insertBefore(header, document.body.firstChild);
-    });
+
+function openFullImage() {
+  document.getElementById("imageModal").style.display = "block";
 }
+
+function closeFullImage() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+// --- چت‌بات ---
 document.addEventListener("DOMContentLoaded", () => {
-  loadHeader();
+  const chatbotBtn = document.getElementById("chatbot-button");
+  const chatbotBox = document.getElementById("chatbot-box");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const messagesDiv = document.getElementById("chatbot-messages");
 
-  const flag = document.getElementById("lang-flag");
-  if (flag) {
-    const path = window.location.pathname;
-    if (path.startsWith("/fa")) {
-      flag.src = "/images/flag-usa.png";
-      flag.alt = "EN";
-    } else {
-      flag.src = "/images/flag-iran.png";
-      flag.alt = "FA";
-    }
-  }
-});
-<script>
-  const chatbotBtn = document.getElementById('chatbot-toggle');
-  const chatbotBox = document.getElementById('chatbot-box');
-  const messagesDiv = document.getElementById('chatbot-messages');
+  if (chatbotBtn) {
+    chatbotBtn.addEventListener("click", () => {
+      chatbotBox.classList.toggle("hidden");
+    });
 
-  chatbotBtn.addEventListener('click', () => {
-    chatbotBox.style.display = chatbotBox.style.display === 'flex' ? 'none' : 'flex';
-  });
-
-  function chatbotSend() {
-    const input = document.getElementById('chatbot-question');
-    const msg = input.value.trim();
-    if (msg === '') return;
-
-    appendMessage("👤", msg);
-    input.value = '';
-
-    // پاسخ ساده چت‌بات (تو می‌تونی اینجا رو کامل‌تر کنی)
-    let response = "متوجه نشدم. لطفاً واضح‌تر بپرس 😅";
-    if (msg.includes("سلام")) response = "سلام دوست من! چطور می‌تونم کمکت کنم؟ 🤗";
-    if (msg.includes("سایت")) response = "این سایت متعلق به متین محمدی هستش 🌐";
-    if (msg.includes("طراحی")) response = "بله خدمات طراحی سایت هم ارائه میشه 🎨";
-
-    setTimeout(() => {
-      appendMessage("🤖", response);
-    }, 500);
+    chatbotInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && chatbotInput.value.trim()) {
+        const msg = chatbotInput.value.trim();
+        appendMessage("شما", msg);
+        chatbotInput.value = "";
+        respondTo(msg);
+      }
+    });
   }
 
   function appendMessage(sender, text) {
-    const p = document.createElement('p');
+    const p = document.createElement("div");
     p.textContent = `${sender}: ${text}`;
     messagesDiv.appendChild(p);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
-</script>
-<script src="bot-data.js"></script>
-<script src="script.js"></script>
-// Chatbot logic
-document.addEventListener("DOMContentLoaded", function () {
-  const button = document.getElementById("chatbot-button");
-  const box = document.getElementById("chatbot-box");
-  const input = document.getElementById("chatbot-input");
-  const messages = document.getElementById("chatbot-messages");
-
-  button.onclick = () => {
-    box.classList.toggle("hidden");
-  };
-
-  input.addEventListener("keypress", function (e) {
-    if (e.key === "Enter" && input.value.trim()) {
-      const userMsg = input.value.trim();
-      showMessage("شما", userMsg);
-      respondTo(userMsg);
-      input.value = "";
-    }
-  });
-
-  function showMessage(sender, text) {
-    const msg = document.createElement("div");
-    msg.textContent = `${sender}: ${text}`;
-    messages.appendChild(msg);
-    messages.scrollTop = messages.scrollHeight;
-  }
 
   function respondTo(text) {
     let response = "متوجه نشدم. لطفاً واضح‌تر بپرسید.";
-    if (text.includes("ساعت")) response = "من فعلاً ساعت رو نمی‌دونم 😅";
     if (text.includes("سلام")) response = "سلام! 👋 چطور می‌تونم کمک‌تون کنم؟";
-    if (text.includes("طراحی سایت")) response = "بله! خدمات طراحی سایت هم ارائه می‌دیم.";
+    if (text.includes("ساعت")) response = "من فعلاً ساعت رو نمی‌دونم 😅";
+    if (text.includes("طراحی سایت")) response = "بله! خدمات طراحی سایت ارائه می‌دیم.";
 
-    setTimeout(() => showMessage("ربات", response), 500);
+    setTimeout(() => appendMessage("ربات", response), 500);
   }
 });
 
-*/
+// --- بارگذاری هدر و فوتر ---
+function loadHeader() {
+  fetch("/header.html")
+    .then(res => {
+      if (!res.ok) throw new Error("خطا در بارگذاری هدر");
+      return res.text();
+    })
+    .then(data => {
+      const header = document.createElement("div");
+      header.innerHTML = data;
+      document.body.insertBefore(header, document.body.firstChild);
+    })
+    .catch(err => console.error("خطا:", err));
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadHeader();
+
+  // بارگذاری فوتر
+  fetch("/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    })
+    .catch(err => console.error("خطا در لود فوتر:", err));
+});
+// ========================
+// توابع اختصاصی صفحه تماس
+// ========================
+function initContactPage() {
+  // بارگذاری منو و فوتر (اگر در صفحه تماس هستیم)
+  if (document.body.classList.contains('page-contact')) {
+    loadHeader();
+    loadFooter();
+
+    // تنظیمات particles.js (اختیاری)
+    if (window.particlesJS) {
+      particlesJS.load('particles-js', '/particles.json');
+    }
+  }
+}
+
+// اضافه کردن رویداد DOMContentLoaded
+document.addEventListener("DOMContentLoaded", initContactPage);
+// ========================
+// English Version Functions
+// ========================
+function initEnglishPages() {
+  if (document.documentElement.lang !== 'en') return;
+
+  // Load footer for all English pages
+  loadFooter();
+
+  // Contact page specific
+  if (document.body.classList.contains('page-en-contact')) {
+    // Additional contact page scripts if needed
+  }
+
+  // Index page specific
+  if (document.body.classList.contains('page-en-index')) {
+    // Additional index page scripts
+  }
+}
+
+// Add to existing DOMContentLoaded listener
+document.addEventListener("DOMContentLoaded", () => {
+  initEnglishPages();
+});
