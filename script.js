@@ -119,3 +119,6 @@ function initEnglishPages() {
 document.addEventListener("DOMContentLoaded", () => {
   initEnglishPages();
 });
+window.onerror = function(message, source, lineno) {
+  console.error(`خطا: ${message} در ${source}:${lineno}`);
+};

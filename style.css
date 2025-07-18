@@ -465,3 +465,154 @@ html[lang="en"] .menu-items {
     left: 0;
   }
 }
+/* مخفی کردن نسخه غیرفعال */
+.footer-content { display: block; }
+.lang-fa, .lang-en { display: none; }
+
+html[lang="fa"] .lang-fa,
+html[lang="en"] .lang-en {
+  display: block;
+}
+
+/* استایل پایه فوتر */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+.lang-switch {
+  display: inline-block;
+  margin: 10px 0;
+  color: #2563eb;
+  text-decoration: none;
+}
+<!-- آیکن ربات چت -->
+<style>
+  #chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #4f46e5;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: background-color 0.3s ease;
+  }
+  #chatbot-toggle:hover {
+    background-color: #4338ca;
+  }
+
+  #chatbot-box {
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    z-index: 9998;
+  }
+
+  #chatbot-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+
+  #chatbot-input {
+    display: flex;
+    gap: 5px;
+  }
+
+  #chatbot-input input {
+    flex-grow: 1;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  #chatbot-input button {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+.lang-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+/* در style.css */
+/* ========================
+   استایل‌های صفحه 404
+   ======================== */
+.page-404 {
+    margin: 0;
+    padding: 0;
+    font-family: "Vazirmatn", sans-serif;
+    background-color: #fdfdfd;
+    color: #333;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page-404 img {
+    max-width: 90%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.page-404 p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.page-404 .timestamp {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+.page-404 .back-link {
+    margin: 10px;
+    padding: 12px 25px;
+    background-color: #1976d2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.page-404 .back-link:hover {
+    background-color: #0d47a1;
+}
