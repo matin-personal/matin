@@ -1,3 +1,27 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --primary-color: #1976d2;
+  --card-bg: #f0f4f8;
+  --footer-bg: #f8f9fa;
+  --footer-text: #333;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --footer-bg: #0a0a0a;
+  --footer-text: #ccc;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* بقیه استایل‌ها بدون تغییر */
 /* style.css - متین محمدی */
 
 /* پایه و فونت */
