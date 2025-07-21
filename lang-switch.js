@@ -26,7 +26,7 @@ function updateLangButton(lang) {
   if (btn) {
     btn.textContent = lang === 'fa' ? 'English' : 'فارسی';
     btn.querySelector('img')?.setAttribute('src', 
-      lang === 'fa' ? '/images/flag-usa.png' : '/images/flag-iran.png');
+      lang === 'fa' ? '/images/flag-usa.webp' : '/images/flag-iran.webp');
   }
 }
 
