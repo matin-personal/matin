@@ -13,7 +13,6 @@
   <meta property="og:url" content="https://matin-mohammadi.ir/en/contact/" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
   <header>
@@ -47,24 +46,8 @@
     </div>
   </main>
   <div id="footer-placeholder"></div>
-  <div id="particles-js"></div>
+  <canvas id="background-canvas"></canvas>
   <script src="/script.js"></script>
   <script src="/menu.js"></script>
-  <script>
-    particlesJS.load('particles-js', '/particles.json', function() {
-      console.log('particles.js loaded');
-    });
-    const updateParticleColors = () => {
-      const theme = document.documentElement.getAttribute('data-theme');
-      particlesJS('particles-js', {
-        particles: {
-          color: { value: theme === 'dark' ? '#ffffff' : '#111111' },
-          line_linked: { color: theme === 'dark' ? '#ffffff' : '#111111' }
-        }
-      });
-    };
-    document.getElementById('toggle-theme').addEventListener('click', updateParticleColors);
-    updateParticleColors();
-  </script>
 </body>
 </html>

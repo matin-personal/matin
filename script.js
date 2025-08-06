@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     this.textContent = newTheme === 'dark' ? '🌞 تغییر تم' : '🌙 تغییر تم';
+    updateShapes(); // به‌روزرسانی اشکال با تم جدید
   });
 
   // دکمه تغییر زبان
@@ -47,10 +48,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // به‌روزرسانی تاریخ در فوتر
   updateFooterDates();
-});
 
-function updateFooterDates() {
-  const now = new Date();
-  document.getElementById('persian-year').textContent = new Intl.DateTimeFormat('fa-IR', { year: 'numeric' }).format(now);
-  document.getElementById('gregorian-year').textContent = now.getFullYear();
-}
+  // تنظیم Canvas برای پس‌زمینه پویا
+  const canvas = document.getElementById('background-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let shapes = [];
+  const maxShapes = 10;
+
+  // اشکال و رنگ‌ها
+  const shapesList = ['circle', 'square', 'triangle'];
+  const getRandomColor = () => {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const lightColors = ['#ff6b6b', '#4ecdc4', '#45b7d1'];
+    const darkColors = ['#ffeb3b', '#ff9800', '#f44336'];
+    return theme === 'dark' ? darkColors[Math.floor(Math.random() * darkColors.length)] : lightColors[Math.floor(Math.random() * lightColors.length)];
+  };
+
+  // کلاس Shape
+  class Shape {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.size = Math.random() * 30 + 10;
+      this.shape = shapesList[Math.floor(Math.random() * shapesList.length)];
+      this.color = getRandomColor();
+      this.speedX = (Math.random() - 0.5) * 4;
+      this.speedY = (Math.random() - 0.5) * 4;
+    }
+
+    draw() {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      if (this.shape === 'circle') {
+        ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+      } else if (this.shape === 'square') {
+        ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+      } else if (this.shape === 'triangle') {
+        ctx.moveTo(this.x, this.y - this.size / 2);
+        ctx.lineTo(this.x - this.size / 2, this.y +

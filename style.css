@@ -35,15 +35,14 @@ html[lang="en"] body {
   text-align: left;
 }
 
-/* استایل پارتیکل‌ها */
-#particles-js {
+/* استایل کانواس پس‌زمینه */
+#background-canvas {
   position: fixed;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   z-index: -1;
-  opacity: 0.5;
 }
 
 /* استایل عکس پروفایل */
@@ -161,6 +160,8 @@ main {
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   color: var(--text-color);
+  position: relative;
+  z-index: 1;
 }
 
 h1 {
@@ -209,6 +210,8 @@ a.button:hover {
   padding: 2rem;
   border-radius: 10px;
   color: var(--text-color);
+  position: relative;
+  z-index: 1;
 }
 
 .page-contact .contact-box {
@@ -249,6 +252,8 @@ footer {
   background: var(--footer-bg);
   color: var(--footer-text);
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-content {

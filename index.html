@@ -13,7 +13,6 @@
   <meta property="og:url" content="https://matin-mohammadi.ir/" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
   <header>
@@ -32,31 +31,15 @@
     </div>
   </header>
   <main>
-    <img src="/icons/profile.jpg" alt="عکس پروفایل متین محمدی" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity: 0; transition: opacity 0.5s;">
+    <img src="/images/profile.jpg" alt="عکس پروفایل متین محمدی" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity: 0; transition: opacity 0.5s;">
     <h1>متین محمدی</h1>
     <h2>طراح و توسعه‌دهنده وب</h2>
     <p>به وب‌سایت رسمی من خوش آمدید! من متین محمدی هستم، متخصص طراحی و توسعه وب با اشتیاق به خلق تجربیات دیجیتال خلاقانه و کاربرپسند. با استفاده از فناوری‌های مدرن، پروژه‌های شما را به سطح بعدی می‌برم. بیایید با هم ایده‌هایتان را به واقعیت تبدیل کنیم!</p>
     <a href="/contact/" class="button">با من تماس بگیرید</a>
   </main>
   <div id="footer-placeholder"></div>
-  <div id="particles-js"></div>
+  <canvas id="background-canvas"></canvas>
   <script src="/script.js"></script>
   <script src="/menu.js"></script>
-  <script>
-    particlesJS.load('particles-js', '/particles.json', function() {
-      console.log('particles.js loaded');
-    });
-    const updateParticleColors = () => {
-      const theme = document.documentElement.getAttribute('data-theme');
-      particlesJS('particles-js', {
-        particles: {
-          color: { value: theme === 'dark' ? '#ffffff' : '#111111' },
-          line_linked: { color: theme === 'dark' ? '#ffffff' : '#111111' }
-        }
-      });
-    };
-    document.getElementById('toggle-theme').addEventListener('click', updateParticleColors);
-    updateParticleColors();
-  </script>
 </body>
 </html>
