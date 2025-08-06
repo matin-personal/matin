@@ -4,20 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ffffff" />
-
   <title>متین محمدی - طراح و توسعه‌دهنده وب</title>
-  <meta name="description" content="وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب. نمونه‌کارها و راه‌های ارتباط با من را در اینجا ببینید." />
+  <meta name="description" content="وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب حرفه‌ای. با من برای خلق پروژه‌های دیجیتال خلاقانه همراه شوید." />
   <meta name="keywords" content="متین محمدی, طراحی سایت, توسعه‌دهنده وب, برنامه‌نویس, نمونه کارها" />
-
   <meta property="og:title" content="متین محمدی - طراح و توسعه‌دهنده وب" />
-  <meta property="og:description" content="وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب. نمونه‌کارها و راه‌های ارتباط با من را در اینجا ببینید." />
+  <meta property="og:description" content="وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب حرفه‌ای." />
   <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
   <meta property="og:url" content="https://matin-mohammadi.ir/" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <h1>متین محمدی - طراح و توسعه‌دهنده وب</h1>
-  <p>وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب. نمونه‌کارها و راه‌های ارتباط با من را در اینجا ببینید</p>
+  <header>
+    <nav class="menu-bar">
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="menu-items" id="menuItems">
+        <a href="/index.html">صفحه اصلی</a>
+        <a href="/contact/">تماس با من</a>
+      </div>
+    </nav>
+    <div class="control-buttons">
+      <button id="lang-btn" onclick="switchLang()">
+        <img src="/images/flag-usa.webp" alt="English" width="20" loading="lazy"> English
+      </button>
+      <button id="toggle-theme">🌗 تغییر تم</button>
+    </div>
+  </header>
+  <main>
+    <img src="/images/profile.jpg" alt="عکس پروفایل متین محمدی" class="profile-pic">
+    <h1>متین محمدی</h1>
+    <h2>طراح و توسعه‌دهنده وب</h2>
+    <p>به وب‌سایت رسمی من خوش آمدید! من متین محمدی هستم، متخصص طراحی و توسعه وب با اشتیاق به خلق تجربیات دیجیتال خلاقانه و کاربرپسند. با استفاده از فناوری‌های مدرن، پروژه‌های شما را به سطح بعدی می‌برم. بیایید با هم ایده‌هایتان را به واقعیت تبدیل کنیم!</p>
+    <a href="/contact/" class="button">با من تماس بگیرید</a>
+  </main>
+  <footer>
+    <div class="footer-content lang-fa" dir="rtl">
+      طراحی شده با ❤️ توسط متین محمدی © <span id="persian-year">۱۴۰۴</span>
+      <div class="certification">
+        <a href="https://logo.samandehi.ir/Verify.aspx?id=381224" target="_blank" rel="noopener">
+          <img src="https://logo.samandehi.ir/logo.aspx?id=381224" alt="لوگوی ساماندهی" width="120" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script src="/script.js"></script>
+  <script src="/menu.js"></script>
 </body>
 </html>

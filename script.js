@@ -1,50 +1,45 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // تنظیم تم اولیه
-  const savedTheme = localStorage.getItem('theme') || 
-                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  // تنظیم تم اولیه بر اساس تنظیمات دستگاه
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
   document.documentElement.setAttribute('data-theme', savedTheme);
+  document.getElementById('toggle-theme').textContent = savedTheme === 'dark' ? '🌞 تغییر تم' : '🌙 تغییر تم';
+
+  // تنظیم زبان اولیه بر اساس تنظیمات مرورگر
+  const userLang = navigator.language || navigator.userLanguage;
+  const savedLang = localStorage.getItem('lang');
+  if (!savedLang) {
+    if (userLang.startsWith('fa')) {
+      localStorage.setItem('lang', 'fa');
+    } else {
+      localStorage.setItem('lang', 'en');
+      window.location.href = '/en/';
+    }
+  }
 
   // دکمه تغییر تم
-  document.getElementById('toggle-theme')?.addEventListener('click', function() {
+  document.getElementById('toggle-theme').addEventListener('click', function() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    this.textContent = newTheme === 'dark' ? '🌞' : '🌙';
+    this.textContent = newTheme === 'dark' ? '🌞 تغییر تم' : '🌙 تغییر تم';
   });
 
-  // سیستم چندزبانی بهبود یافته
-  const langBtn = document.getElementById('lang-btn');
-  if (langBtn) {
-    langBtn.addEventListener('click', function() {
-      const currentLang = document.documentElement.lang;
-      const newLang = currentLang === 'fa' ? 'en' : 'fa';
-      localStorage.setItem('lang', newLang);
-      window.location.href = newLang === 'fa' ? '/' : '/en/';
-    });
-  }
-
-  // اسکرول به بالا
-  window.addEventListener('scroll', function() {
-    const scrollBtn = document.getElementById('scroll-top');
-    if (scrollBtn) {
-      scrollBtn.style.display = window.scrollY > 100 ? 'block' : 'none';
-    }
+  // دکمه تغییر زبان
+  document.getElementById('lang-btn').addEventListener('click', function() {
+    const currentLang = document.documentElement.lang;
+    const newLang = currentLang === 'fa' ? 'en' : 'fa';
+    localStorage.setItem('lang', newLang);
+    window.location.href = newLang === 'fa' ? '/' : '/en/';
   });
 
-  // تاریخ در فوتر
+  // به‌روزرسانی تاریخ در فوتر
   updateFooterDates();
 });
 
 function updateFooterDates() {
   const now = new Date();
-  
-  // سال شمسی
-  const persianDate = new Intl.DateTimeFormat('fa-IR', {
-    year: 'numeric'
-  }).format(now);
-  document.getElementById('persian-year')?.textContent = persianDate;
-  
-  // سال میلادی
-  document.getElementById('gregorian-year')?.textContent = now.getFullYear();
+  document.getElementById('persian-year').textContent = new Intl.DateTimeFormat('fa-IR', { year: 'numeric' }).format(now);
+  document.getElementById('gregorian-year').textContent = now.getFullYear();
 }

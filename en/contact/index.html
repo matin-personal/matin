@@ -4,18 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ffffff" />
-
   <title>Contact Matin Mohammadi</title>
-  <meta name="description" content="Get in touch with Matin Mohammadi via email, contact form, or social media." />
-  <meta name="keywords" content="contact, email, message, Matin Mohammadi, developer" />
-
-  <meta property="og:title" content="Contact Matin Mohammadi" />
-  <meta property="og:description" content="Get in touch with Matin Mohammadi via email, contact form, or social media." />
+  <meta name="description" content="Get in touch with Matin Mohammadi via email, Telegram, or contact form." />
+  <meta name="keywords" content="contact, email, Telegram, Matin Mohammadi, developer" />
+  <meta property="og:title" content="Contact Matin сути Mohammadi" />
+  <meta property="og:description" content="Get in touch with Matin Mohammadi via email, Telegram, or contact form." />
   <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
   <meta property="og:url" content="https://matin-mohammadi.ir/en/contact/" />
   <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <!-- Content -->
+  <header>
+    <nav class="menu-bar">
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="menu-items" id="menuItems">
+        <a href="/en/index.html">Home</a>
+        <a href="/en/contact/">Contact</a>
+      </div>
+    </nav>
+    <div class="control-buttons">
+      <button id="lang-btn" onclick="switchLang()">
+        <img src="/images/flag-iran.webp" alt="فارسی" width="20" loading="lazy"> فارسی
+      </button>
+      <button id="toggle-theme">🌗 Change Theme</button>
+    </div>
+  </header>
+  <main class="page-contact">
+    <h1>Contact Me</h1>
+    <p>Reach out for collaboration or inquiries using the options below:</p>
+    <div class="contact-box">
+      <a href="mailto:info@matin-mohammadi.ir" class="contact-item">
+        <img src="/images/email-icon.svg" alt="Email"> Email: info@matin-mohammadi.ir
+      </a>
+      <a href="https://t.me/matinmohammadi" class="contact-item">
+        <img src="/images/telegram-icon.svg" alt="Telegram"> Telegram
+      </a>
+      <a href="/en/contact/form.html" class="contact-item">
+        <img src="/images/form-icon.svg" alt="Contact Form"> Contact Form
+      </a>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-content lang-en" dir="ltr">
+      Designed with ❤️ by Matin Mohammadi © <span id="gregorian-year">2025</span>
+      <div class="badges">
+        <img src="/images/web-verified-badge.svg" alt="Verified" width="100" loading="lazy">
+      </div>
+    </div>
+  </footer>
+  <script src="/script.js"></script>
+  <script src="/menu.js"></script>
 </body>
 </html>

@@ -4,18 +4,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ffffff" />
-
   <title>Matin Mohammadi - Web Designer & Developer</title>
-  <meta name="description" content="Official website of Matin Mohammadi. Discover my portfolio and contact me for web projects." />
+  <meta name="description" content="Official website of Matin Mohammadi, a professional web designer and developer. Join me to create innovative digital projects." />
   <meta name="keywords" content="Matin Mohammadi, web design, web developer, programmer, portfolio" />
-
   <meta property="og:title" content="Matin Mohammadi - Web Designer & Developer" />
-  <meta property="og:description" content="Official website of Matin Mohammadi. Discover my portfolio and contact me for web projects." />
+  <meta property="og:description" content="Official website of Matin Mohammadi, a professional web designer and developer." />
   <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
   <meta property="og:url" content="https://matin-mohammadi.ir/en/" />
   <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <!-- Content -->
+  <header>
+    <nav class="menu-bar">
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="menu-items" id="menuItems">
+        <a href="/en/index.html">Home</a>
+        <a href="/en/contact/">Contact</a>
+      </div>
+    </nav>
+    <div class="control-buttons">
+      <button id="lang-btn" onclick="switchLang()">
+        <img src="/images/flag-iran.webp" alt="فارسی" width="20" loading="lazy"> فارسی
+      </button>
+      <button id="toggle-theme">🌗 Change Theme</button>
+    </div>
+  </header>
+  <main>
+    <img src="/images/profile.jpg" alt="Matin Mohammadi Profile Picture" class="profile-pic">
+    <h1>Matin Mohammadi</h1>
+    <h2>Web Designer & Developer</h2>
+    <p>Welcome to my official website! I’m Matin Mohammadi, a passionate web designer and developer dedicated to crafting innovative and user-friendly digital experiences. Using modern technologies, I elevate your projects to the next level. Let’s turn your ideas into reality!</p>
+    <a href="/en/contact/" class="button">Contact Me</a>
+  </main>
+  <footer>
+    <div class="footer-content lang-en" dir="ltr">
+      Designed with ❤️ by Matin Mohammadi © <span id="gregorian-year">2025</span>
+      <div class="badges">
+        <img src="/images/web-verified-badge.svg" alt="Verified" width="100" loading="lazy">
+      </div>
+    </div>
+  </footer>
+  <script src="/script.js"></script>
+  <script src="/menu.js"></script>
 </body>
 </html>
