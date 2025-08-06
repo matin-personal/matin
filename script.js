@@ -17,6 +17,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
+  // لود فوتر
+  const footerPlaceholder = document.getElementById('footer-placeholder');
+  if (footerPlaceholder) {
+    fetch('/footer.html')
+      .then(response => response.text())
+      .then(html => {
+        footerPlaceholder.innerHTML = html;
+      })
+      .catch(error => console.error('Error loading footer:', error));
+  }
+
   // دکمه تغییر تم
   document.getElementById('toggle-theme').addEventListener('click', function() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
