@@ -1,6 +1,6 @@
 :root {
   --bg-color: #ffffff;
-  --text-color: #111111; /* رنگ مشکی در حالت روشن */
+  --text-color: #111111; /* مشکی در حالت روشن */
   --primary-color: #1976d2;
   --card-bg: #f0f4f8;
   --footer-bg: #f8f9fa;
@@ -9,7 +9,7 @@
 
 [data-theme="dark"] {
   --bg-color: #121212;
-  --text-color: #ffffff; /* رنگ سفید در حالت دارک */
+  --text-color: #ffffff; /* سفید در حالت دارک */
   --card-bg: #1e1e1e;
   --footer-bg: #0a0a0a;
   --footer-text: #ccc;
@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
-  color: var(--text-color); /* استفاده از متغیر برای رنگ متن */
+  color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -43,6 +43,12 @@ html[lang="en"] body {
   object-fit: cover;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border: 3px solid var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.profile-pic[loaded] {
+  opacity: 1;
 }
 
 /* استایل هدر و منو */
@@ -141,41 +147,31 @@ main {
   background-color: var(--card-bg);
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  color: var(--text-color); /* رنگ متن در main */
+  color: var(--text-color);
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
-  font-size: 1.5rem;
-  color: var(--text-color); /* رنگ متن برای h2 */
+  font-size: 1.8rem;
+  color: var(--text-color);
   margin-bottom: 1rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.8;
-  color: var(--text-color); /* رنگ متن برای p */
-}
-
-a.button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  margin-top: 1rem;
-}
-
-a.button:hover {
-  background-color: #0d47a1;
+  color: var(--text-color);
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* سایه برای خوانایی بیشتر */
 }
 
 /* استایل صفحه تماس */
@@ -183,7 +179,7 @@ a.button:hover {
   background-color: var(--card-bg);
   padding: 2rem;
   border-radius: 10px;
-  color: var(--text-color); /* رنگ متن در صفحه تماس */
+  color: var(--text-color);
 }
 
 .page-contact .contact-box {
@@ -222,7 +218,7 @@ footer {
   margin-top: auto;
   padding: 2rem 1rem;
   background: var(--footer-bg);
-  color: var(--footer-text); /* رنگ متن فوتر */
+  color: var(--footer-text);
   text-align: center;
 }
 
@@ -244,6 +240,6 @@ html[lang="en"] .lang-en {
     max-width: 1000px;
   }
   h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 }
