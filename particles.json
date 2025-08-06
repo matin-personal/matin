@@ -1,23 +1,25 @@
 {
   "particles": {
     "number": {
-      "value": 80,
+      "value": 50, /* تعداد پارتیکل‌ها */
       "density": {
         "enable": true,
         "value_area": 800
       }
     },
     "color": {
-      "value": "#ffffff"
+      "value": "#ffffff" /* رنگ پیش‌فرض (در دارک) */
     },
     "shape": {
-      "type": "circle"
+      "type": "circle" /* شکل دایره */
     },
     "opacity": {
-      "value": 0.5
+      "value": 0.7,
+      "random": true
     },
     "size": {
-      "value": 3
+      "value": 4,
+      "random": true
     },
     "line_linked": {
       "enable": true,
@@ -28,7 +30,12 @@
     },
     "move": {
       "enable": true,
-      "speed": 2
+      "speed": 2,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false
     }
   },
   "interactivity": {
@@ -36,7 +43,7 @@
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "grab"
+        "mode": "repulse"
       },
       "onclick": {
         "enable": true,
@@ -44,11 +51,9 @@
       }
     },
     "modes": {
-      "grab": {
+      "repulse": {
         "distance": 200,
-        "line_linked": {
-          "opacity": 1
-        }
+        "duration": 0.4
       },
       "push": {
         "particles_nb": 4

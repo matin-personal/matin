@@ -1,6 +1,6 @@
 :root {
   --bg-color: #ffffff;
-  --text-color: #111111; /* مشکی در حالت روشن */
+  --text-color: #111111;
   --primary-color: #1976d2;
   --card-bg: #f0f4f8;
   --footer-bg: #f8f9fa;
@@ -9,7 +9,7 @@
 
 [data-theme="dark"] {
   --bg-color: #121212;
-  --text-color: #ffffff; /* سفید در حالت دارک */
+  --text-color: #ffffff;
   --card-bg: #1e1e1e;
   --footer-bg: #0a0a0a;
   --footer-text: #ccc;
@@ -26,11 +26,24 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
 html[lang="en"] body {
   font-family: 'Inter', sans-serif;
   text-align: left;
+}
+
+/* استایل پارتیکل‌ها */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.5;
 }
 
 /* استایل عکس پروفایل */
@@ -171,7 +184,23 @@ p {
   line-height: 1.8;
   color: var(--text-color);
   font-weight: 500;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* سایه برای خوانایی بیشتر */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+a.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+a.button:hover {
+  background-color: #0d47a1;
 }
 
 /* استایل صفحه تماس */
