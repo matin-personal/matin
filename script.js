@@ -69,23 +69,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // کلاس Shape
   class Shape {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-      this.size = Math.random() * 30 + 10;
-      this.shape = shapesList[Math.floor(Math.random() * shapesList.length)];
-      this.color = getRandomColor();
-      this.speedX = (Math.random() - 0.5) * 4;
-      this.speedY = (Math.random() - 0.5) * 4;
-    }
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.size = Math.random() * 30 + 10;
+    this.shape = shapesList[Math.floor(Math.random() * shapesList.length)];
+    this.color = getRandomColor();
+    this.speedX = (Math.random() - 0.5) * 4;
+    this.speedY = (Math.random() - 0.5) * 4;
+  }
 
-    draw() {
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      if (this.shape === 'circle') {
-        ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
-      } else if (this.shape === 'square') {
-        ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
-      } else if (this.shape === 'triangle') {
-        ctx.moveTo(this.x, this.y - this.size / 2);
-        ctx.lineTo(this.x - this.size / 2, this.y +
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    if (this.shape === 'circle') {
+      ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (this.shape === 'square') {
+      ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+    } else if (this.shape === 'triangle') {
+      ctx.moveTo(this.x, this.y - this.size / 2);
+      ctx.lineTo(this.x - this.size / 2, this.y + this.size / 2);
+      ctx.lineTo(this.x + this.size / 2, this.y + this.size / 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // برگشت از لبه‌ها
+    if (this.x <= 0 || this.x >= canvas.width) this.speedX *= -1;
+    if (this.y <= 0 || this.y >= canvas.height) this.speedY *= -1;
+
+    this.draw();
+  }
+}
