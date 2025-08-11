@@ -15,21 +15,29 @@
   --footer-text: #ccc;
 }
 
-body {
+html, body {
+  height: auto;
+  min-height: 100%;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
   font-family: 'Vazirmatn', sans-serif;
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
-  position: relative;
-  overflow: hidden;
 }
 
+/* اجازه میدیم صفحه اسکرول کنه — مشکل اساسی همینجا بود */
+body {
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: auto; /* <-- اصلاح شد (قبلاً hidden) */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* وقتی صفحه انگلیسی است، متن چپ‌چین می‌شود */
 html[lang="en"] body {
   font-family: 'Inter', sans-serif;
   text-align: left;
@@ -43,6 +51,7 @@ html[lang="en"] body {
   width: 100%;
   height: 100%;
   z-index: -1;
+  pointer-events: none;
 }
 
 /* استایل عکس پروفایل */
@@ -63,11 +72,12 @@ html[lang="en"] body {
   opacity: 1;
 }
 
-/* استایل هدر و منو */
+/* هدر و منو */
 header {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 1rem;
 }
 
 nav.menu-bar {
@@ -88,6 +98,7 @@ nav.menu-bar {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .menu-items a {
@@ -123,7 +134,7 @@ nav.menu-bar {
   }
 }
 
-/* استایل دکمه‌ها */
+/* دکمه‌ها */
 .control-buttons {
   position: fixed;
   top: 1rem;
@@ -151,7 +162,7 @@ nav.menu-bar {
   background-color: #0d47a1;
 }
 
-/* استایل محتوای اصلی */
+/* محتوای اصلی */
 main {
   max-width: 800px;
   margin: 2rem auto;
@@ -181,13 +192,13 @@ h2 {
 }
 
 p {
-  font-size: 1.3rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: var(--text-color);
   font-weight: 500;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* دکمه رابط */
 a.button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -204,7 +215,7 @@ a.button:hover {
   background-color: #0d47a1;
 }
 
-/* استایل صفحه تماس */
+/* صفحه تماس */
 .page-contact {
   background-color: var(--card-bg);
   padding: 2rem;
@@ -245,7 +256,7 @@ a.button:hover {
   height: 24px;
 }
 
-/* استایل فوتر */
+/* فوتر */
 footer {
   margin-top: auto;
   padding: 2rem 1rem;
@@ -268,7 +279,7 @@ html[lang="en"] .lang-en {
   display: flex;
 }
 
-/* ریسپانسیو */
+/* responsive tweaks */
 @media (min-width: 1200px) {
   main {
     max-width: 1000px;
@@ -277,3 +288,6 @@ html[lang="en"] .lang-en {
     font-size: 3.5rem;
   }
 }
+
+/* small utility */
+.hidden { display: none !important; }

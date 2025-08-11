@@ -1,109 +1,189 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // تنظیم تم اولیه بر اساس تنظیمات دستگاه
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  document.getElementById('toggle-theme').textContent = savedTheme === 'dark' ? '🌞 تغییر تم' : '🌙 تغییر تم';
+// === script.js (نسخه اصلاح‌شده) ===
 
-  // تنظیم زبان اولیه بر اساس تنظیمات مرورگر
-  const userLang = navigator.language || navigator.userLanguage;
+// توکن‌ها/پیکربندی یا متغیرهای کلی اینجا باشن
+const supportedLangs = ['fa', 'en'];
+
+// ----- توابع زبان -----
+function updateLangButtonUI(lang) {
+  // به‌روزرسانی همه دکمه‌های زبان (هم id و هم کلاس)
+  const langEls = document.querySelectorAll('#lang-btn, .lang-button');
+  langEls.forEach(btn => {
+    try {
+      // اگر تصویر داخل دکمه هست، مسیرش را هم آپدیت کن
+      const img = btn.querySelector('img');
+      if (img) {
+        img.setAttribute('src', lang === 'fa' ? '/images/flag-usa.webp' : '/images/flag-iran.webp');
+        img.setAttribute('alt', lang === 'fa' ? 'English' : 'فارسی');
+      }
+      btn.textContent = (lang === 'fa') ? 'English' : 'فارسی';
+      // اگر تصویر داشتیم و می‌خواهیم متن + تصویر هر دو را نگه داریم، می‌توان کد متفاوتی قرار داد.
+    } catch (e) {
+      // از هر خطایی عبور کن — نباید اجرای اسکریپت را قطع کند
+      console.warn('updateLangButtonUI error', e);
+    }
+  });
+}
+
+function initLanguage() {
   const savedLang = localStorage.getItem('lang');
+  // مرورگر ممکن است 'fa-IR' یا 'en-US' و غیره برگرداند
+  const browserLang = (navigator.language || navigator.userLanguage || 'fa').slice(0,2);
+  const chosen = savedLang || (supportedLangs.includes(browserLang) ? browserLang : 'fa');
+
+  document.documentElement.lang = chosen;
+  document.documentElement.dir = chosen === 'fa' ? 'rtl' : 'ltr';
+  updateLangButtonUI(chosen);
+
+  // اگر هیچ زبانی ذخیره نشده و مرورگر غیر از fa است، فقط ذخیره کن — دیگر لزومی به ریدایرکت نداریم
   if (!savedLang) {
-    if (userLang.startsWith('fa')) {
-      localStorage.setItem('lang', 'fa');
-    } else {
-      localStorage.setItem('lang', 'en');
-      window.location.href = '/en/';
+    localStorage.setItem('lang', chosen);
+    // قبلاً کد ریدایرکت به /en/ داشتیم؛ این رفتار باعث ریدایرکت ناخواسته می‌شد.
+    // اگر می‌خواهی خودکار به پوشه /en/ برویم، میتوانیم اینجا شرط بگذاریم.
+  }
+}
+
+function changeLanguageTo(newLang) {
+  if (!supportedLangs.includes(newLang)) return;
+  localStorage.setItem('lang', newLang);
+  // اگر سایت شما نسخه مجزا در /en/ دارد، این ریدایرکت انجام شود، در غیر این صورت فقط سمت کاربر تغییر جهت می‌یابد.
+  if (newLang === 'en') {
+    // اگر مسیر فعلی در /en/ نیست، ریدایرکت کن
+    if (!location.pathname.startsWith('/en')) {
+      location.href = '/en/';
+      return;
+    }
+  } else {
+    // فارسی
+    if (location.pathname.startsWith('/en')) {
+      // اگر نسخه انگلیسی هست و کاربر خواست فارسی بشه باید به ریشه بازگردد
+      location.href = '/';
+      return;
     }
   }
 
-  // لود فوتر
+  // در صفحات single-page یا همان فایل‌های بدون ریدایرکت:
+  document.documentElement.lang = newLang;
+  document.documentElement.dir = newLang === 'fa' ? 'rtl' : 'ltr';
+  updateLangButtonUI(newLang);
+}
+
+// ----- توابع تم -----
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  // اگر فانکشنی برای به‌روزرسانی اشکال پس‌زمینه دارید، فقط در صورت وجود اجرا شود
+  if (typeof updateShapes === 'function') {
+    try { updateShapes(); } catch (e) { console.warn('updateShapes() error', e); }
+  }
+  // به‌روزرسانی متن دکمه(ها)
+  const toggles = document.querySelectorAll('#toggle-theme, .toggle-theme');
+  toggles.forEach(btn => {
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '🌞 تغییر تم' : '🌙 تغییر تم';
+    }
+  });
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+function initTheme() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const saved = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+  applyTheme(saved);
+}
+
+// ----- بارگذاری فوتر (به‌صورت امن) -----
+function loadFooter() {
   const footerPlaceholder = document.getElementById('footer-placeholder');
-  if (footerPlaceholder) {
-    fetch('/footer.html')
-      .then(response => response.text())
-      .then(html => {
-        footerPlaceholder.innerHTML = html;
-      })
-      .catch(error => console.error('Error loading footer:', error));
-  }
+  if (!footerPlaceholder) return;
+  fetch('/footer.html')
+    .then(r => {
+      if (!r.ok) throw new Error('footer load failed');
+      return r.text();
+    })
+    .then(html => footerPlaceholder.innerHTML = html)
+    .catch(err => {
+      console.warn('Footer load failed:', err);
+      // fallback: اگر لازم باشه میتونیم یک فوتر ساده درج کنیم
+      // footerPlaceholder.innerHTML = '<footer>Designed by Matin</footer>';
+    });
+}
 
-  // دکمه تغییر تم
-  document.getElementById('toggle-theme').addEventListener('click', function() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    this.textContent = newTheme === 'dark' ? '🌞 تغییر تم' : '🌙 تغییر تم';
-    updateShapes(); // به‌روزرسانی اشکال با تم جدید
-  });
+// ----- شروع اصلی بعد از DOMContentLoaded -----
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    // init language & theme
+    initLanguage();
+    initTheme();
 
-  // دکمه تغییر زبان
-  document.getElementById('lang-btn').addEventListener('click', function() {
-    const currentLang = document.documentElement.lang;
-    const newLang = currentLang === 'fa' ? 'en' : 'fa';
-    localStorage.setItem('lang', newLang);
-    window.location.href = newLang === 'fa' ? '/' : '/en/';
-  });
+    // load footer
+    loadFooter();
 
-  // به‌روزرسانی تاریخ در فوتر
-  updateFooterDates();
-
-  // تنظیم Canvas برای پس‌زمینه پویا
-  const canvas = document.getElementById('background-canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let shapes = [];
-  const maxShapes = 10;
-
-  // اشکال و رنگ‌ها
-  const shapesList = ['circle', 'square', 'triangle'];
-  const getRandomColor = () => {
-    const theme = document.documentElement.getAttribute('data-theme');
-    const lightColors = ['#ff6b6b', '#4ecdc4', '#45b7d1'];
-    const darkColors = ['#ffeb3b', '#ff9800', '#f44336'];
-    return theme === 'dark' ? darkColors[Math.floor(Math.random() * darkColors.length)] : lightColors[Math.floor(Math.random() * lightColors.length)];
-  };
-
-  // کلاس Shape
-  class Shape {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.size = Math.random() * 30 + 10;
-    this.shape = shapesList[Math.floor(Math.random() * shapesList.length)];
-    this.color = getRandomColor();
-    this.speedX = (Math.random() - 0.5) * 4;
-    this.speedY = (Math.random() - 0.5) * 4;
-  }
-
-  draw() {
-    ctx.fillStyle = this.color;
-    ctx.beginPath();
-    if (this.shape === 'circle') {
-      ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
-      ctx.fill();
-    } else if (this.shape === 'square') {
-      ctx.fillRect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
-    } else if (this.shape === 'triangle') {
-      ctx.moveTo(this.x, this.y - this.size / 2);
-      ctx.lineTo(this.x - this.size / 2, this.y + this.size / 2);
-      ctx.lineTo(this.x + this.size / 2, this.y + this.size / 2);
-      ctx.closePath();
-      ctx.fill();
+    // bind language buttons (ممکنه چند دکمه وجود داشته باشه)
+    const langButtons = document.querySelectorAll('#lang-btn, .lang-button');
+    if (langButtons && langButtons.length) {
+      langButtons.forEach(btn => {
+        btn.removeEventListener('click', onLangClickFallback);
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          // اگر دکمه دارای attribute ای برای زبان است، از آن استفاده کن
+          const targetLang = btn.getAttribute('data-lang') || (document.documentElement.lang === 'fa' ? 'en' : 'fa');
+          changeLanguageTo(targetLang);
+        });
+      });
     }
+
+    // bind theme toggles (ممکنه چند دکمه وجود داشته باشه)
+    const themeToggles = document.querySelectorAll('#toggle-theme, .toggle-theme');
+    if (themeToggles && themeToggles.length) {
+      themeToggles.forEach(t => {
+        t.removeEventListener('click', toggleTheme);
+        t.addEventListener('click', function(e) {
+          e.preventDefault();
+          toggleTheme();
+        });
+      });
+    }
+
+    // منوی همبرگر
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function() {
+        const menu = document.getElementById('menuItems');
+        if (menu) menu.classList.toggle('open');
+      });
+    }
+
+    // به‌روزرسانی تاریخ فوتر اگر تابع وجود دارد
+    if (typeof updateFooterDates === 'function') {
+      try { updateFooterDates(); } catch (e) { /* ignore */ }
+    }
+
+    // تنظیم canvas بعد از resize
+    const canvas = document.getElementById('background-canvas');
+    if (canvas && canvas.getContext) {
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        if (typeof updateShapes === 'function') {
+          try { updateShapes(); } catch (e) {}
+        }
+      }
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      resizeCanvas();
+    }
+
+  } catch (err) {
+    console.error('Initialization error:', err);
   }
+});
 
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
-
-    // برگشت از لبه‌ها
-    if (this.x <= 0 || this.x >= canvas.width) this.speedX *= -1;
-    if (this.y <= 0 || this.y >= canvas.height) this.speedY *= -1;
-
-    this.draw();
-  }
+// یک fallback ساده (اگر نیاز به جدا کردن removeEventListener داشتیم)
+function onLangClickFallback(e) {
+  e.preventDefault();
+  const current = document.documentElement.lang || 'fa';
+  changeLanguageTo(current === 'fa' ? 'en' : 'fa');
 }
