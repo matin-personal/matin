@@ -1,65 +1,85 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>تماس با متین محمدی</title>
-  <meta name="description" content="با متین محمدی تماس بگیرید. از طریق ایمیل، تلگرام یا فرم تماس در ارتباط باشید." />
-  <meta name="keywords" content="تماس, ارتباط, فرم تماس, متین محمدی, برنامه‌نویس" />
-  <meta property="og:title" content="تماس با متین محمدی" />
-  <meta property="og:description" content="با متین محمدی تماس بگیرید. از طریق ایمیل، تلگرام یا فرم تماس." />
-  <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
-  <meta property="og:url" content="https://matin-mohammadi.ir/contact/" />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-  <header>
-    <nav class="menu-bar">
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <div class="menu-items" id="menuItems">
-        <a href="/index.html">صفحه اصلی</a>
-        <a href="/contact/">تماس با من</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <title>تماس با متین محمدی</title>
+    <meta name="description" content="با متین محمدی تماس بگیرید: ایمیل، تلگرام یا فرم تماس." />
+    <meta name="keywords" content="تماس, ارتباط, فرم تماس, متین محمدی, توسعه‌دهنده وب" />
+    <link rel="canonical" href="https://matin-mohammadi.ir/contact/" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/en/contact/" hreflang="en" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/contact/" hreflang="fa" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/contact/" hreflang="x-default" />
+    <!-- Open Graph & Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="تماس با متین محمدی" />
+    <meta property="og:description" content="برای همکاری یا پرسش، با متین محمدی تماس بگیرید." />
+    <meta property="og:url" content="https://matin-mohammadi.ir/contact/" />
+    <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="تماس با متین محمدی" />
+    <meta name="twitter:description" content="برای همکاری یا پرسش، با متین محمدی تماس بگیرید." />
+    <meta name="twitter:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <meta name="twitter:url" content="https://matin-mohammadi.ir/contact/" />
+    <!-- Schema.org (WebPage) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "url": "https://matin-mohammadi.ir/contact/",
+        "inLanguage": "fa",
+        "name": "تماس با متین محمدی",
+        "description": "برای همکاری یا پرسش، با متین محمدی تماس بگیرید."
+      }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTFNVW51PZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-BTFNVW51PZ');
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="menu-bar">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="menu-items" id="menuItems">
+          <a href="/index.html">صفحه اصلی</a>
+          <a href="/contact/" aria-current="page">تماس با من</a>
+        </div>
+      </nav>
+      <div class="control-buttons">
+        <button id="lang-btn" class="lang-button" data-lang="en">English</button>
+        <button id="toggle-theme" class="toggle-theme">🌙 تغییر تم</button>
       </div>
-    </nav>
-    <div class="control-buttons">
-      <button id="lang-btn" onclick="switchLang()">
-        <img src="/images/flag-usa.webp" alt="English" width="20" loading="lazy"> English
-      </button>
-      <button id="toggle-theme">🌗 تغییر تم</button>
-    </div>
-  </header>
-  <main class="page-contact">
-    <h1>تماس با من</h1>
-    <p>برای همکاری یا پرس‌وجو، از روش‌های زیر با من در ارتباط باشید:</p>
-    <div class="contact-box">
-      <a href="mailto:info@matin-mohammadi.ir" class="contact-item">
-        <img src="/icons/gmail.png" alt="ایمیل"> ایمیل: info@matin-mohammadi.ir
-      </a>
-      <a href="https://t.me/YOUR_ID" class="contact-item">
-        <img src="/icons/telegram.png" alt="تلگرام"> تلگرام
-      </a>
-      <a href="https://wa.me/YOUR_ID" class="contact-item">
-        <img src="/icons/whatsapp.png" alt="واتساپ"> واتساپ
-      </a>
-      <a href="https://bale.ai/YOUR_ID" class="contact-item">
-        <img src="/icons/baleh.png" alt="بله"> بله
-      </a>
-      <a href="https://eitaa.com/YOUR_ID" class="contact-item">
-        <img src="/icons/eitaa.png" alt="ایتا"> ایتا
-      </a>
-      <a href="https://rubika.ir/YOUR_ID" class="contact-item">
-        <img src="/icons/rubika.png" alt="روبیکا"> روبیکا
-      </a>
-      <a href="/contact/form.html" class="contact-item">
-        <img src="/icons/linkedin.png" alt="فرم تماس"> فرم تماس
-      </a>
-    </div>
-  </main>
-  <div id="footer-placeholder"></div>
-  <canvas id="background-canvas"></canvas>
-  <script src="/script.js"></script>
-  <script src="/menu.js"></script>
-</body>
+    </header>
+    <main class="page-contact">
+      <h1>تماس با من</h1>
+      <p>برای همکاری یا پرس‌وجو، از روش‌های زیر با من در ارتباط باشید:</p>
+      <div class="contact-box">
+        <a href="mailto:info@matin-mohammadi.ir" class="contact-item">
+          <img src="/icons/gmail.png" alt="ایمیل" />
+          ایمیل: info@matin-mohammadi.ir
+        </a>
+        <a href="https://t.me/YOUR_ID" class="contact-item">
+          <img src="/icons/telegram.png" alt="تلگرام" /> تلگرام
+        </a>
+        <a href="https://wa.me/YOUR_ID" class="contact-item">
+          <img src="/icons/whatsapp.png" alt="واتساپ" /> واتساپ
+        </a>
+        <a href="/contact/form.html" class="contact-item">
+          <img src="/icons/linkedin.png" alt="فرم تماس" /> فرم تماس
+        </a>
+      </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <canvas id="background-canvas"></canvas>
+    <script src="/script.js"></script>
+    <script src="/menu.js"></script>
+  </body>
 </html>

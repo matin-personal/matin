@@ -1,53 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Contact Matin Mohammadi</title>
-  <meta name="description" content="Get in touch with Matin Mohammadi via email, Telegram, or contact form." />
-  <meta name="keywords" content="contact, email, Telegram, Matin Mohammadi, developer" />
-  <meta property="og:title" content="Contact Matin Mohammadi" />
-  <meta property="og:description" content="Get in touch with Matin Mohammadi via email, Telegram, or contact form." />
-  <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
-  <meta property="og:url" content="https://matin-mohammadi.ir/en/contact/" />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-  <header>
-    <nav class="menu-bar">
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <div class="menu-items" id="menuItems">
-        <a href="/en/index.html">Home</a>
-        <a href="/en/contact/">Contact</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Contact Matin Mohammadi</title>
+    <meta name="description" content="Get in touch with Matin Mohammadi via email, Telegram, WhatsApp, or contact form." />
+    <meta name="keywords" content="contact, email, Telegram, WhatsApp, Matin Mohammadi, web developer" />
+    <link rel="canonical" href="https://matin-mohammadi.ir/en/contact/" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/contact/" hreflang="fa" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/en/contact/" hreflang="en" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/contact/" hreflang="x-default" />
+    <!-- Open Graph & Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact Matin Mohammadi" />
+    <meta property="og:description" content="Reach out for collaboration or inquiries via email, Telegram, WhatsApp, or the contact form." />
+    <meta property="og:url" content="https://matin-mohammadi.ir/en/contact/" />
+    <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contact Matin Mohammadi" />
+    <meta name="twitter:description" content="Reach out for collaboration or inquiries via email, Telegram, WhatsApp, or the contact form." />
+    <meta name="twitter:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <meta name="twitter:url" content="https://matin-mohammadi.ir/en/contact/" />
+    <!-- Schema.org (WebPage) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "url": "https://matin-mohammadi.ir/en/contact/",
+        "inLanguage": "en",
+        "name": "Contact Matin Mohammadi",
+        "description": "Reach out for collaboration or inquiries via email, Telegram, WhatsApp, or the contact form."
+      }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTFNVW51PZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-BTFNVW51PZ');
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="menu-bar">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="menu-items" id="menuItems">
+          <a href="/en/index.html">Home</a>
+          <a href="/en/contact/" aria-current="page">Contact</a>
+        </div>
+      </nav>
+      <div class="control-buttons">
+        <button id="lang-btn" class="lang-button" data-lang="fa">فارسی</button>
+        <button id="toggle-theme" class="toggle-theme">🌙 تغییر تم</button>
       </div>
-    </nav>
-    <div class="control-buttons">
-      <button id="lang-btn" onclick="switchLang()">
-        <img src="/images/flag-iran.webp" alt="فارسی" width="20" loading="lazy"> فارسی
-      </button>
-      <button id="toggle-theme">🌗 Change Theme</button>
-    </div>
-  </header>
-  <main class="page-contact">
-    <h1>Contact Me</h1>
-    <p>Reach out for collaboration or inquiries using the options below:</p>
-    <div class="contact-box">
-      <a href="mailto:info@matin-mohammadi.ir" class="contact-item">
-        <img src="/icons/gmail.png" alt="Email"> Email: info@matin-mohammadi.ir
-      </a>
-      <a href="https://t.me/YOUR_ID" class="contact-item">
-        <img src="/icons/telegram.png" alt="Telegram"> Telegram
-      </a>
-      <a href="/en/contact/form.html" class="contact-item">
-        <img src="/icons/linkedin.png" alt="Contact Form"> Contact Form
-      </a>
-    </div>
-  </main>
-  <div id="footer-placeholder"></div>
-  <canvas id="background-canvas"></canvas>
-  <script src="/script.js"></script>
-  <script src="/menu.js"></script>
-</body>
+    </header>
+    <main class="page-contact">
+      <h1>Contact Me</h1>
+      <p>Reach out for collaboration or inquiries using the options below:</p>
+      <div class="contact-box">
+        <a href="mailto:info@matin-mohammadi.ir" class="contact-item">
+          <img src="/icons/gmail.png" alt="Email" />
+          Email: info@matin-mohammadi.ir
+        </a>
+        <a href="https://t.me/YOUR_ID" class="contact-item">
+          <img src="/icons/telegram.png" alt="Telegram" /> Telegram
+        </a>
+        <a href="https://wa.me/YOUR_ID" class="contact-item">
+          <img src="/icons/whatsapp.png" alt="WhatsApp" /> WhatsApp
+        </a>
+        <a href="/en/contact/form.html" class="contact-item">
+          <img src="/icons/linkedin.png" alt="Contact Form" /> Contact Form
+        </a>
+      </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <canvas id="background-canvas"></canvas>
+    <script src="/script.js"></script>
+    <script src="/menu.js"></script>
+  </body>
 </html>

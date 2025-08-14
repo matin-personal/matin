@@ -1,45 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Matin Mohammadi - Web Designer & Developer</title>
-  <meta name="description" content="Official website of Matin Mohammadi, a professional web designer and developer. Join me to create innovative digital projects." />
-  <meta name="keywords" content="Matin Mohammadi, web design, web developer, programmer, portfolio" />
-  <meta property="og:title" content="Matin Mohammadi - Web Designer & Developer" />
-  <meta property="og:description" content="Official website of Matin Mohammadi, a professional web designer and developer." />
-  <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
-  <meta property="og:url" content="https://matin-mohammadi.ir/en/" />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-  <header>
-    <nav class="menu-bar">
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <div class="menu-items" id="menuItems">
-        <a href="/en/index.html">Home</a>
-        <a href="/en/contact/">Contact</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Matin Mohammadi | Web Designer &amp; Developer</title>
+    <meta name="description" content="Official website of Matin Mohammadi, professional web designer and developer. Creating innovative, user‑friendly digital experiences." />
+    <meta name="keywords" content="Matin Mohammadi, web design, web development, programmer, portfolio, developer" />
+    <!-- canonical & hreflang -->
+    <link rel="canonical" href="https://matin-mohammadi.ir/en/" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/" hreflang="fa" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/en/" hreflang="en" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/" hreflang="x-default" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Matin Mohammadi" />
+    <meta property="og:title" content="Matin Mohammadi | Web Designer &amp; Developer" />
+    <meta property="og:description" content="Creating innovative and user‑friendly digital experiences using modern technologies." />
+    <meta property="og:url" content="https://matin-mohammadi.ir/en/" />
+    <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Matin Mohammadi | Web Designer &amp; Developer" />
+    <meta name="twitter:description" content="Creating innovative and user‑friendly digital experiences using modern technologies." />
+    <meta name="twitter:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <meta name="twitter:url" content="https://matin-mohammadi.ir/en/" />
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Matin Mohammadi",
+            "url": "https://matin-mohammadi.ir/",
+            "image": "https://matin-mohammadi.ir/images/profile.jpg",
+            "jobTitle": "Web Designer & Developer",
+            "worksFor": { "@type": "Organization", "name": "Freelance" },
+            "sameAs": [
+              "https://github.com/matin…",
+              "https://t.me/…"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "name": "Matin Mohammadi",
+            "url": "https://matin-mohammadi.ir/",
+            "inLanguage": "en",
+            "author": { "@id": "https://matin-mohammadi.ir/" }
+          }
+        ]
+      }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTFNVW51PZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-BTFNVW51PZ');
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="menu-bar">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="menu-items" id="menuItems">
+          <a href="/en/index.html" aria-current="page">Home</a>
+          <a href="/en/contact/">Contact</a>
+        </div>
+      </nav>
+      <div class="control-buttons">
+        <!-- Persian button: data-lang="fa" → return to root -->
+        <button id="lang-btn" class="lang-button" data-lang="fa">فارسی</button>
+        <button id="toggle-theme" class="toggle-theme">🌙 تغییر تم</button>
       </div>
-    </nav>
-    <div class="control-buttons">
-      <button id="lang-btn" onclick="switchLang()">
-        <img src="/images/flag-iran.webp" alt="فارسی" width="20" loading="lazy"> فارسی
-      </button>
-      <button id="toggle-theme">🌗 Change Theme</button>
-    </div>
-  </header>
-  <main>
-    <img src="/images/profile.jpg" alt="Matin Mohammadi Profile Picture" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity: 0; transition: opacity 0.5s;">
-    <h1>Matin Mohammadi</h1>
-    <h2>Web Designer & Developer</h2>
-    <p>Welcome to my official website! I’m Matin Mohammadi, a passionate web designer and developer dedicated to crafting innovative and user-friendly digital experiences. Using modern technologies, I elevate your projects to the next level. Let’s turn your ideas into reality!</p>
-    <a href="/en/contact/" class="button">Contact Me</a>
-  </main>
-  <div id="footer-placeholder"></div>
-  <canvas id="background-canvas"></canvas>
-  <script src="/script.js"></script>
-  <script src="/menu.js"></script>
-</body>
+    </header>
+    <main>
+      <img src="/images/profile.jpg" alt="Matin Mohammadi profile picture" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity:0; transition:opacity 0.5s;" />
+      <h1>Matin Mohammadi</h1>
+      <h2>Web Designer &amp; Developer</h2>
+      <p>
+        Welcome to my official website! I’m Matin Mohammadi, a passionate web designer and developer dedicated to crafting innovative and user‑friendly digital experiences.
+        Using modern technologies, I elevate your projects to the next level. Let’s turn your ideas into reality!
+      </p>
+      <a href="/en/contact/" class="button">Contact Me</a>
+    </main>
+    <div id="footer-placeholder"></div>
+    <canvas id="background-canvas"></canvas>
+    <script src="/script.js"></script>
+    <script src="/menu.js"></script>
+  </body>
 </html>

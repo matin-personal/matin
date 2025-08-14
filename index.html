@@ -1,45 +1,99 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>متین محمدی - طراح و توسعه‌دهنده وب</title>
-  <meta name="description" content="وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب حرفه‌ای. با من برای خلق پروژه‌های دیجیتال خلاقانه همراه شوید." />
-  <meta name="keywords" content="متین محمدی, طراحی سایت, توسعه‌دهنده وب, برنامه‌نویس, نمونه کارها" />
-  <meta property="og:title" content="متین محمدی - طراح و توسعه‌دهنده وب" />
-  <meta property="og:description" content="وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب حرفه‌ای." />
-  <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
-  <meta property="og:url" content="https://matin-mohammadi.ir/" />
-  <meta property="og:type" content="website" />
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-  <header>
-    <nav class="menu-bar">
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <div class="menu-items" id="menuItems">
-        <a href="/index.html">صفحه اصلی</a>
-        <a href="/contact/">تماس با من</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <title>متین محمدی | طراح و توسعه‌دهنده وب</title>
+    <meta name="description" content="وب‌سایت رسمی متین محمدی، طراح و توسعه‌دهنده وب. پروژه‌های دیجیتال کاربرپسند و خلاقانه." />
+    <meta name="keywords" content="متین محمدی, طراحی سایت, توسعه وب, برنامه‌نویس, نمونه کار, توسعه‌دهنده" />
+    <!-- canonical & hreflang -->
+    <link rel="canonical" href="https://matin-mohammadi.ir/" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/en/" hreflang="en" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/" hreflang="fa" />
+    <link rel="alternate" href="https://matin-mohammadi.ir/" hreflang="x-default" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Matin Mohammadi" />
+    <meta property="og:title" content="متین محمدی | طراح و توسعه‌دهنده وب" />
+    <meta property="og:description" content="طراحی و توسعه وب با فناوری‌های مدرن و تجربهٔ کاربری حرفه‌ای." />
+    <meta property="og:url" content="https://matin-mohammadi.ir/" />
+    <meta property="og:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="متین محمدی | طراح و توسعه‌دهنده وب" />
+    <meta name="twitter:description" content="طراحی و توسعه وب با فناوری‌های مدرن و تجربهٔ کاربری حرفه‌ای." />
+    <meta name="twitter:image" content="https://matin-mohammadi.ir/images/og-image.jpg" />
+    <meta name="twitter:url" content="https://matin-mohammadi.ir/" />
+    <!-- Schema.org (Person + WebSite) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Matin Mohammadi",
+            "url": "https://matin-mohammadi.ir/",
+            "image": "https://matin-mohammadi.ir/images/profile.jpg",
+            "jobTitle": "Web Designer & Developer",
+            "worksFor": { "@type": "Organization", "name": "Freelance" },
+            "sameAs": [
+              "https://github.com/matin…", 
+              "https://t.me/…"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "name": "Matin Mohammadi",
+            "url": "https://matin-mohammadi.ir/",
+            "inLanguage": "fa",
+            "author": { "@id": "https://matin-mohammadi.ir/" }
+          }
+        ]
+      }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTFNVW51PZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-BTFNVW51PZ');
+    </script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="menu-bar">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="menu-items" id="menuItems">
+          <a href="/index.html" aria-current="page">صفحه اصلی</a>
+          <a href="/contact/">تماس با من</a>
+        </div>
+      </nav>
+      <div class="control-buttons">
+        <!-- دکمهٔ تغییر زبان؛ data‑lang مشخص می‌کند کجا باید ریدایرکت انجام شود -->
+        <button id="lang-btn" class="lang-button" data-lang="en">English</button>
+        <button id="toggle-theme" class="toggle-theme">🌙 تغییر تم</button>
       </div>
-    </nav>
-    <div class="control-buttons">
-      <button id="lang-btn" onclick="switchLang()">
-        <img src="/images/flag-usa.webp" alt="English" width="20" loading="lazy"> English
-      </button>
-      <button id="toggle-theme">🌗 تغییر تم</button>
-    </div>
-  </header>
-  <main>
-    <img src="/images/profile.jpg" alt="عکس پروفایل متین محمدی" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity: 0; transition: opacity 0.5s;">
-    <h1>متین محمدی</h1>
-    <h2>طراح و توسعه‌دهنده وب</h2>
-    <p>به وب‌سایت رسمی من خوش آمدید! من متین محمدی هستم، متخصص طراحی و توسعه وب با اشتیاق به خلق تجربیات دیجیتال خلاقانه و کاربرپسند. با استفاده از فناوری‌های مدرن، پروژه‌های شما را به سطح بعدی می‌برم. بیایید با هم ایده‌هایتان را به واقعیت تبدیل کنیم!</p>
-    <a href="/contact/" class="button">با من تماس بگیرید</a>
-  </main>
-  <div id="footer-placeholder"></div>
-  <canvas id="background-canvas"></canvas>
-  <script src="/script.js"></script>
-  <script src="/menu.js"></script>
-</body>
+    </header>
+    <main>
+      <img src="/images/profile.jpg" alt="عکس پروفایل متین محمدی" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity:0; transition:opacity 0.5s;" />
+      <h1>متین محمدی</h1>
+      <h2>طراح و توسعه‌دهنده وب</h2>
+      <p>
+        به وب‌سایت رسمی من خوش آمدید! من متین محمدی هستم، متخصص طراحی و توسعه وب با
+        اشتیاق به خلق تجربیات دیجیتال خلاقانه و کاربرپسند. با استفاده از فناوری‌های مدرن، پروژه‌های
+        شما را به سطح بعدی می‌برم. بیایید با هم ایده‌هایتان را به واقعیت تبدیل کنیم!
+      </p>
+      <a href="/contact/" class="button">با من تماس بگیرید</a>
+    </main>
+    <!-- فوتر به صورت جدا از طریق fetch بارگذاری می‌شود -->
+    <div id="footer-placeholder"></div>
+    <canvas id="background-canvas"></canvas>
+    <script src="/script.js"></script>
+    <script src="/menu.js"></script>
+  </body>
 </html>
