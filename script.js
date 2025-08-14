@@ -1,59 +1,59 @@
-// === script.js (نسخه نهایی) ===
-
-// پیکربندی پایه
+// === script.js (نهایی) ===
 const supportedLangs = ['fa', 'en'];
 
-/* ---------------- زبان ---------------- */
+/* ---------- زبان ---------- */
+// دکمه باید «زبان مقصد» را نشان بدهد؛ پرچم هم پرچم مقصد باشد.
+function ensureLangBtnParts(btn) {
+  // اگر img یا span موجود نیست، ایجادشان کن تا هیچ‌وقت textContent آنها را حذف نکند
+  let img = btn.querySelector('img#lang-flag');
+  if (!img) {
+    img = document.createElement('img');
+    img.id = 'lang-flag';
+    img.style.width = '24px';
+    img.style.height = '24px';
+    img.style.borderRadius = '50%';
+    img.style.boxShadow = '0 0 4px rgba(0,0,0,.25)';
+    btn.prepend(img);
+  }
+  let label = btn.querySelector('span');
+  if (!label) {
+    label = document.createElement('span');
+    label.style.marginInlineStart = '.5rem';
+    btn.appendChild(label);
+  }
+  return { img, label };
+}
 
-// دکمهٔ زبان باید «زبان مقصد» را نشان بدهد (برعکس زبان فعلی صفحه)
 function updateLangButtonUI(currentLang) {
   const langEls = document.querySelectorAll('#lang-btn, .lang-button');
   langEls.forEach(btn => {
     try {
-      const targetLang = (currentLang === 'fa') ? 'en' : 'fa'; // مقصد
-      const img   = btn.querySelector('img#lang-flag');
-      const label = btn.querySelector('span') || btn;
+      const targetLang = (currentLang === 'fa') ? 'en' : 'fa';
+      const { img, label } = ensureLangBtnParts(btn);
 
-      if (img) {
-        img.setAttribute('src', targetLang === 'en' ? '/images/flag-usa.webp' : '/images/flag-iran.webp');
-        img.setAttribute('alt', targetLang === 'en' ? 'English' : 'فارسی');
-      }
-      if (label) {
-        label.textContent = (targetLang === 'en') ? 'English' : 'فارسی';
-      }
+      // مسیرهای مطلق تا در / و /en/ درست کار کند
+      img.setAttribute('src', targetLang === 'en' ? '/images/flag-usa.webp' : '/images/flag-iran.webp');
+      img.setAttribute('alt', targetLang === 'en' ? 'English' : 'فارسی');
+      label.textContent = (targetLang === 'en') ? 'English' : 'فارسی';
 
-      // برای کلیک بعدی، مقصد را به‌صورت صریح نگه می‌داریم
       btn.setAttribute('data-lang', targetLang);
-    } catch (e) {
-      console.warn('updateLangButtonUI error', e);
-    }
+    } catch (e) { console.warn('updateLangButtonUI error', e); }
   });
 }
 
 function initLanguage() {
   const savedLang   = localStorage.getItem('lang');
-  const browserLang = (navigator.language || navigator.userLanguage || 'fa').slice(0, 2);
+  const browserLang = (navigator.language || navigator.userLanguage || 'fa').slice(0,2);
   const initial     = savedLang || (supportedLangs.includes(browserLang) ? browserLang : 'fa');
 
-  // اعمال زبان و جهت
   document.documentElement.lang = initial;
   document.documentElement.dir  = (initial === 'fa') ? 'rtl' : 'ltr';
   updateLangButtonUI(initial);
 
-  // فقط بار اول: ذخیره و هدایت به مسیر درست اگر نسخه‌های جداگانه داری
   if (!savedLang) {
     localStorage.setItem('lang', initial);
-
-    // اگر زبان دستگاه EN بود و در /en/ نیستیم → برو /en/
-    if (initial === 'en' && !location.pathname.startsWith('/en')) {
-      location.href = '/en/';
-      return;
-    }
-    // اگر زبان دستگاه FA بود و در /en/ هستیم → برو ریشه
-    if (initial === 'fa' && location.pathname.startsWith('/en')) {
-      location.href = '/';
-      return;
-    }
+    if (initial === 'en' && !location.pathname.startsWith('/en')) { location.href = '/en/'; return; }
+    if (initial === 'fa' &&  location.pathname.startsWith('/en')) { location.href = '/';    return; }
   }
 }
 
@@ -61,71 +61,47 @@ function changeLanguageTo(newLang) {
   const target = supportedLangs.includes(newLang) ? newLang : 'fa';
   localStorage.setItem('lang', target);
 
-  // اگر ساختار دو-شاخه داری، ریدایرکت کن
   if (target === 'en') {
-    if (!location.pathname.startsWith('/en')) {
-      location.href = '/en/';
-      return;
-    }
-  } else { // fa
-    if (location.pathname.startsWith('/en')) {
-      location.href = '/';
-      return;
-    }
+    if (!location.pathname.startsWith('/en')) { location.href = '/en/'; return; }
+  } else {
+    if (location.pathname.startsWith('/en'))   { location.href = '/';    return; }
   }
 
-  // در صفحات تک‌فایله (بدون ریدایرکت)
   document.documentElement.lang = target;
   document.documentElement.dir  = (target === 'fa') ? 'rtl' : 'ltr';
   updateLangButtonUI(target);
 }
 
-/* ---------------- تم (روشن/تاریک) ---------------- */
-
+/* ---------- تم ---------- */
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
-
-  // به‌روزرسانی متن دکمه‌های تم (اگر چند دکمه وجود دارد)
-  const toggles = document.querySelectorAll('#toggle-theme, .toggle-theme');
-  toggles.forEach(btn => {
-    if (btn) btn.textContent = (theme === 'dark') ? '🌞 تغییر تم' : '🌙 تغییر تم';
-  });
-
-  // اگر جایی تابع updateShapes دارید، فقط در صورت وجود اجرا شود
-  if (typeof updateShapes === 'function') {
-    try { updateShapes(); } catch (e) { console.warn('updateShapes() error', e); }
-  }
+  document.querySelectorAll('#toggle-theme, .toggle-theme')
+    .forEach(btn => btn.textContent = (theme === 'dark') ? '🌞 تغییر تم' : '🌙 تغییر تم');
+  if (typeof updateShapes === 'function') { try { updateShapes(); } catch(_){} }
 }
-
 function toggleTheme() {
   const current = document.documentElement.getAttribute('data-theme') || 'light';
   applyTheme(current === 'dark' ? 'light' : 'dark');
 }
-
 function initTheme() {
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const saved       = localStorage.getItem('theme'); // 'light' | 'dark' | null
-  const theme       = saved || (prefersDark ? 'dark' : 'light');
+  const saved = localStorage.getItem('theme');
+  const theme = saved || (prefersDark ? 'dark' : 'light');
   applyTheme(theme);
 }
 
-/* ---------------- فوتر داینامیک ---------------- */
-
+/* ---------- فوتر داینامیک با کش‌شکن ---------- */
 function loadFooter() {
   const footerPlaceholder = document.getElementById('footer-placeholder');
   if (!footerPlaceholder) return;
-  fetch('/footer.html?cb=' + Date.now())
-    .then(r => {
-      if (!r.ok) throw new Error('footer load failed');
-      return r.text();
-    })
+  fetch('/footer.html?v=20250814') // نسخه را هنگام تغییر فوتر عوض کن
+    .then(r => { if (!r.ok) throw new Error('footer load failed'); return r.text(); })
     .then(html => footerPlaceholder.innerHTML = html)
     .catch(err => console.warn('Footer load failed:', err));
 }
 
-/* ---------------- دراور منو ---------------- */
-
+/* ---------- دراور منو ---------- */
 function initDrawer(){
   const btn      = document.querySelector('.hamburger');
   const drawer   = document.getElementById('sideDrawer');
@@ -151,43 +127,29 @@ function initDrawer(){
   document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDrawer(); });
 }
 
-/* ---------------- استارتاپ ---------------- */
-
+/* ---------- استارتاپ ---------- */
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    // زبان و تم (بار اول از دستگاه، بعداً از localStorage)
     initLanguage();
     initTheme();
-
-    // فوتر
     loadFooter();
 
-    // بایند دکمه زبان (همه دکمه‌ها، اگر چندتا باشند)
-    const langButtons = document.querySelectorAll('#lang-btn, .lang-button');
-    if (langButtons && langButtons.length) {
-      langButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetLang = btn.getAttribute('data-lang') || ((document.documentElement.lang === 'fa') ? 'en' : 'fa');
-          changeLanguageTo(targetLang);
-        });
+    // بایند دکمه زبان
+    document.querySelectorAll('#lang-btn, .lang-button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetLang = btn.getAttribute('data-lang') ||
+                           ((document.documentElement.lang === 'fa') ? 'en' : 'fa');
+        changeLanguageTo(targetLang);
       });
-    }
+    });
 
-    // بایند دکمه‌های تم
-    const themeToggles = document.querySelectorAll('#toggle-theme, .toggle-theme');
-    if (themeToggles && themeToggles.length) {
-      themeToggles.forEach(t => {
-        t.addEventListener('click', (e) => {
-          e.preventDefault();
-          toggleTheme();
-        });
-      });
-    }
+    // بایند دکمه تم
+    document.querySelectorAll('#toggle-theme, .toggle-theme').forEach(t => {
+      t.addEventListener('click', (e) => { e.preventDefault(); toggleTheme(); });
+    });
 
-    // منوی کشویی
     initDrawer();
-
   } catch (err) {
     console.error('Initialization error:', err);
   }
