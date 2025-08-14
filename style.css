@@ -375,3 +375,75 @@ html[lang="en"] .lang-en {
   background: #f1f1f1;
   align-self: flex-start;
 }
+/* نمایش متن درست برای هر زبان */
+.lang-fa, .lang-en { display: none; }
+html[lang="fa"] .lang-fa { display: flex; }
+html[lang="en"] .lang-en { display: flex; }
+
+/* فوتر */
+footer .footer-content { padding: 1rem 0; flex-direction: column; gap: .75rem; }
+footer img { display: block; max-width: 140px; height: auto; }
+
+/* فاصله از بالا تا با دکمه‌ها تداخل نکند */
+main { margin-top: 4.5rem; }
+
+/* کنترل‌باتن‌ها (تم/زبان) جدا از منو، گوشه مقابل همبرگر */
+.control-buttons {
+  position: fixed;
+  top: .75rem;
+  inset-inline-end: .75rem; /* راست در RTL، چپ در LTR */
+  display: flex;
+  gap: .5rem;
+  z-index: 2000;
+}
+
+/* همبرگر */
+.hamburger {
+  position: fixed;
+  top: .75rem;
+  inset-inline-start: .75rem; /* چپ در RTL، راست در LTR */
+  z-index: 2000;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+/* دراور منو (عمومی) */
+.side-drawer {
+  position: fixed;
+  top: 0; bottom: 0;
+  width: 260px;
+  background: var(--card-bg);
+  box-shadow: 0 0 20px rgba(0,0,0,.25);
+  z-index: 1999;
+  transform: translateX(-110%); /* پیش‌فرض: بیرون دید */
+  transition: transform .25s ease;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* جهت بازشدن بر اساس زبان */
+html[lang="fa"] .side-drawer { inset-inline-end: 0; transform: translateX(110%); } /* از راست */
+html[lang="en"] .side-drawer { inset-inline-start: 0; transform: translateX(-110%); } /* از چپ */
+.side-drawer.open { transform: translateX(0); }
+
+.drawer-close {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.drawer-menu { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-direction: column; gap: .75rem; }
+.drawer-menu a { color: var(--text-color); text-decoration: none; font-weight: 600; padding: .5rem .75rem; border-radius: 8px; }
+.drawer-menu a:hover { background: rgba(0,0,0,.06); }
+
+.drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 1998; display: none; }
+.drawer-backdrop.show { display: block; }

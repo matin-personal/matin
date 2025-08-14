@@ -1,12 +1,14 @@
-<nav class="menu-bar">
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  <div class="menu-items" id="menuItems">
-    <a href="index.html">صفحه اصلی</a>
-    <a href="/contact/">تماس با من</a>
-  </div>
+<!-- دکمه همبرگر -->
+<button class="hamburger" aria-label="open menu">☰</button>
+
+<!-- دراور منو -->
+<nav class="side-drawer" id="sideDrawer" aria-hidden="true">
+  <button class="drawer-close" aria-label="close menu">×</button>
+  <ul class="drawer-menu">
+    <li><a href="/index.html">صفحه اصلی</a></li>
+    <li><a href="/contact/">تماس با من</a></li>
+  </ul>
 </nav>
-<button id="toggle-theme" style="position: fixed; bottom: 1rem; left: 1rem; z-index: 999;">
-  🌗 تغییر تم
-</button>
-<button onclick="switchLang()" id="lang-btn">English</button>
-<button onclick="switchLang()" id="lang-btn" class="lang-button">English</button>
+
+<!-- اوورلی -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>

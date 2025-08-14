@@ -1,16 +1,10 @@
 <header>
-  <button id="lang-btn" onclick="switchLang()" style="position: fixed; top: 1rem; right: 1rem; z-index: 999; border: none; background: none;">
-    <img src="/images/flag-iran.webp" alt="FA" id="lang-flag" style="width: 36px; height: auto; border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.3);" />
-  </button>
-</header>
-
-<!-- دکمه چت‌بات و پنجره -->
-<button id="chatbot-toggle">🤖</button>
-<div id="chatbot-box">
-  <div id="chatbot-messages"></div>
-  <div id="chatbot-input">
-    <input type="text" id="chatbot-question" placeholder="سؤالت رو بنویس...">
-    <button onclick="chatbotSend()">ارسال</button>
+  <div class="control-buttons">
+    <button id="toggle-theme" class="toggle-theme">🌙 تغییر تم</button>
+    <button id="lang-btn" class="lang-button" aria-label="switch language">
+      <img id="lang-flag" src="/images/flag-usa.webp" alt="English"
+           style="width:24px;height:24px;border-radius:50%;box-shadow:0 0 4px rgba(0,0,0,.25)">
+      <span style="margin-inline-start:.5rem">English</span>
+    </button>
   </div>
-</div>
-  <canvas id="bg-shapes" style="position: fixed; top: 0; left: 0; z-index: -1;"></canvas>
+</header>

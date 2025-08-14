@@ -1,11 +1,11 @@
-<nav class="menu-bar">
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  <div class="menu-items" id="menuItems">
-    <a href="/en/">Home</a>
-    <a href="/en/contact/">Contact</a>
-  </div>
+<button class="hamburger" aria-label="open menu">☰</button>
+
+<nav class="side-drawer" id="sideDrawer" aria-hidden="true">
+  <button class="drawer-close" aria-label="close menu">×</button>
+  <ul class="drawer-menu">
+    <li><a href="/en/index.html">Home</a></li>
+    <li><a href="/en/contact/">Contact</a></li>
+  </ul>
 </nav>
-<button id="toggle-theme" style="position: fixed; bottom: 1rem; left: 1rem; z-index: 999;">
-  🌗 Theme
-</button>
-<button onclick="switchLang()" id="lang-btn">فارسی</button>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
