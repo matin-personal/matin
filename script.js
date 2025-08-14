@@ -115,7 +115,7 @@ function initTheme() {
 function loadFooter() {
   const footerPlaceholder = document.getElementById('footer-placeholder');
   if (!footerPlaceholder) return;
-  fetch('/footer.html')
+  fetch('/footer.html?cb=' + Date.now())
     .then(r => {
       if (!r.ok) throw new Error('footer load failed');
       return r.text();
