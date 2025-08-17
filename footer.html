@@ -1,14 +1,9 @@
+<!-- /footer.html -->
 <footer>
-  <!-- انیمیشن اشکال + چت‌بات -->
-  <script src="/animated-shapes.js" defer></script>
-  <script src="/bot-data.js" defer></script>
-  <script src="/chatbot.js" defer></script>
-
-  <!-- فارسی -->
+  <!-- نسخهٔ فارسی -->
   <div class="footer-content lang-fa" dir="rtl">
     طراحی شده با ❤️ توسط متین محمدی © <span id="persian-year">۱۴۰۴</span>
     <div class="certification">
-      <!-- لوگوی ساماندهی رسمی با پارامترهایی که خودت دادی -->
       <img
         referrerpolicy="origin"
         id="samandehi-logo-fa"
@@ -23,20 +18,18 @@
     </div>
   </div>
 
-  <!-- English -->
+  <!-- English version -->
   <div class="footer-content lang-en" dir="ltr">
     Designed with ❤️ by Matin Mohammadi © <span id="gregorian-year">2025</span>
     <div class="badges">
-      <!-- اگر فایل svg داری نگه‌دار؛ در غیر اینصورت حذفش کن -->
       <img src="/images/web-verified-badge.svg" alt="Verified" width="100" loading="lazy">
     </div>
   </div>
-<script src="/interactive-shapes.js"></script>
+</footer>
+
+<!-- پس‌زمینه‌ی تعاملی: فقط یک کانواس برای تمام صفحات -->
 <canvas id="background-canvas"
         style="position:fixed;
-               top:0;
-               left:0;
-               width:100%;
-               height:100%;
-               z-index:-1;"></canvas>
-</footer>
+               top:0; left:0;
+               width:100%; height:100%;
+               z-index:-1; pointer-events:auto;"></canvas>

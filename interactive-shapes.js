@@ -206,3 +206,13 @@
   }
   animate();
 })();
+// قبل از کد فعلی:
+function waitForCanvas(cb){
+  const t=setInterval(()=>{ const c=document.getElementById('background-canvas');
+    if(c){ clearInterval(t); cb(c); } }, 100);
+}
+// و به جای: const canvas = document.getElementById("background-canvas");
+// بنویس:
+waitForCanvas((canvas)=>{ 
+  // اینجا بقیه کد فعلی‌ات را قرار بده (یا بدنه‌ی IIFE را داخل این کال‌بک ببر)
+});
