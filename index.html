@@ -65,21 +65,8 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <header>
-      <nav class="menu-bar">
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <div class="menu-items" id="menuItems">
-          <a href="/index.html" aria-current="page">صفحه اصلی</a>
-          <a href="/contact/">تماس با من</a>
-        </div>
-      </nav>
-<div class="control-buttons">
-  <!-- دکمه زبان: اسکریپت متن و پرچم را خودکار اضافه می‌کند -->
-  <button id="lang-btn" class="lang-button" aria-label="switch language" data-lang="en"></button>
-  <!-- دکمه تغییر تم: متن توسط اسکریپت تعیین می‌شود -->
-  <button id="toggle-theme" class="toggle-theme" aria-label="toggle theme"></button>
-</div>
-    </header>
+    <!-- بالای <body>، درست جایی که هدر بود -->
+<div id="header-placeholder"></div>
     <main>
       <img src="/images/profile.jpg" alt="عکس پروفایل متین محمدی" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity:0; transition:opacity 0.5s;" />
       <h1>متین محمدی</h1>

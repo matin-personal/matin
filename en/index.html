@@ -64,21 +64,8 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <header>
-      <nav class="menu-bar">
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-        <div class="menu-items" id="menuItems">
-          <a href="/en/index.html" aria-current="page">Home</a>
-          <a href="/en/contact/">Contact</a>
-        </div>
-      </nav>
-      <div class="control-buttons">
-        <!-- Persian button: data-lang="fa" → return to root -->
-        <button id="lang-btn" class="lang-button" data-lang="fa">فارسی</button>
-        <!-- The default text here is in English; script.js will override as needed. -->
-        <button id="toggle-theme" class="toggle-theme">Change Theme</button>
-      </div>
-    </header>
+    <!-- بالای <body>، درست جایی که هدر بود -->
+<div id="header-placeholder"></div>
     <main>
       <img src="/images/profile.jpg" alt="Matin Mohammadi profile picture" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity:0; transition:opacity 0.5s;" />
       <h1>Matin Mohammadi</h1>

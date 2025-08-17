@@ -447,3 +447,10 @@ html[lang="en"] .side-drawer { inset-inline-start: 0; transform: translateX(-110
 
 .drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 1998; display: none; }
 .drawer-backdrop.show { display: block; }
+.control-buttons { position: fixed; top: .75rem; inset-inline-end: .75rem; display:flex; gap:.5rem; z-index:2000; }
+.control-buttons button {
+  background: var(--primary-color); color:#fff; border:none; padding:.55rem .9rem; border-radius:999px;
+  font-weight:700; display:flex; align-items:center; gap:.5rem; box-shadow:0 6px 16px rgba(0,0,0,.15);
+  transition: transform .15s ease, background .2s ease;
+}
+.control-buttons button:active { transform: scale(.97); }
