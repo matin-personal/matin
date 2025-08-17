@@ -53,10 +53,12 @@
           <a href="/contact/" aria-current="page">تماس با من</a>
         </div>
       </nav>
-      <div class="control-buttons">
-        <button id="lang-btn" class="lang-button" data-lang="en">English</button>
-        <button id="toggle-theme" class="toggle-theme">🌙 تغییر تم</button>
-      </div>
+<div class="control-buttons">
+  <!-- دکمه زبان: اسکریپت متن و پرچم را خودکار اضافه می‌کند -->
+  <button id="lang-btn" class="lang-button" aria-label="switch language" data-lang="en"></button>
+  <!-- دکمه تغییر تم: متن توسط اسکریپت تعیین می‌شود -->
+  <button id="toggle-theme" class="toggle-theme" aria-label="toggle theme"></button>
+</div>
     </header>
     <main class="page-contact">
       <h1>تماس با من</h1>

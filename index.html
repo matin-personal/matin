@@ -73,11 +73,12 @@
           <a href="/contact/">تماس با من</a>
         </div>
       </nav>
-      <div class="control-buttons">
-        <!-- دکمهٔ تغییر زبان؛ data‑lang مشخص می‌کند کجا باید ریدایرکت انجام شود -->
-        <button id="lang-btn" class="lang-button" data-lang="en">English</button>
-        <button id="toggle-theme" class="toggle-theme">🌙 تغییر تم</button>
-      </div>
+<div class="control-buttons">
+  <!-- دکمه زبان: اسکریپت متن و پرچم را خودکار اضافه می‌کند -->
+  <button id="lang-btn" class="lang-button" aria-label="switch language" data-lang="en"></button>
+  <!-- دکمه تغییر تم: متن توسط اسکریپت تعیین می‌شود -->
+  <button id="toggle-theme" class="toggle-theme" aria-label="toggle theme"></button>
+</div>
     </header>
     <main>
       <img src="/images/profile.jpg" alt="عکس پروفایل متین محمدی" class="profile-pic" loading="lazy" onload="this.style.opacity='1';" style="opacity:0; transition:opacity 0.5s;" />
