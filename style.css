@@ -400,3 +400,10 @@ html[lang="en"] .footer-content.lang-en { display: flex; }
   .control-buttons { top: .75rem; right: .75rem; }
   .control-buttons button { padding: .45rem .8rem; }
 }
+#bg-shapes{
+  position:absolute; /* absolute بهتر از fixed برای بومِ بلند */
+  inset:0;
+  z-index:-1;
+  pointer-events:none; /* کلیک‌ها به محتوا برسن */
+}
+body{ position:relative; } /* تا absolute به بدنه لنگر بشه */

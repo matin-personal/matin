@@ -1,107 +1,188 @@
-// /animated-shapes.js
-(() => {
-  // 1) create or reuse canvas
-  let canvas = document.getElementById('bg-shapes');
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.id = 'bg-shapes';
-    Object.assign(canvas.style, {
-      position: 'fixed',
-      inset: '0',
-      zIndex: '-1',         // پشتِ محتوا
-      pointerEvents: 'none' // کلیک‌ها مزاحم UI نشه (خودمون روی document گوش می‌دیم)
-    });
-    document.body.appendChild(canvas);
-  }
+/* ===== Animated Background Shapes (full-page, theme-aware) ===== */
+(function () {
+  const canvas = document.getElementById('bg-shapes');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
+  // تعداد کل اشکال (طبق خواسته‌ات 10 تا، اگر خواستی بیشتر کن)
+  const MAX_SHAPES = 10;
+  // انواع شکل‌ها
+  const SHAPE_TYPES = ['circle', 'square', 'triangle', 'hex'];
 
-  const MAX = 10;
-  const TYPES = ['circle', 'square', 'triangle'];
+  // پالت‌های پرکنتراست برای هر تم
+  const LIGHT_COLORS = [
+    '#1E88E5','#3949AB','#00897B','#D81B60','#E65100','#5E35B1',
+    '#1565C0','#2E7D32','#AD1457','#EF6C00','#283593','#00695C',
+    '#1976D2','#00796B','#C62828','#6A1B9A','#512DA8','#455A64',
+    '#0D47A1','#1B5E20','#7B1FA2','#BF360C','#37474F','#3F51B5'
+  ];
+  const DARK_COLORS = [
+    '#FFEA00','#FFC400','#FF7043','#FF5252','#00E5FF','#69F0AE',
+    '#7C4DFF','#18FFFF','#FFAB40','#FF4081','#40C4FF','#84FFFF',
+    '#FFD740','#B388FF','#EA80FC','#82B1FF','#A7FFEB','#FF8A65',
+    '#FFF176','#80D8FF','#FF6E40','#FF9E80','#FFFF8D','#CCFF90'
+  ];
+
+  // وضعیت
   let shapes = [];
-  let darkMode = (document.documentElement.getAttribute('data-theme') || '').toLowerCase() === 'dark';
+  let rafId = null;
 
-  function pickColor() {
-    if (darkMode) {
-      const palette = ['#ffd166','#06d6a0','#118ab2','#ef476f','#ffadad','#d0f4de','#cdb4db','#f6bd60','#84a59d','#f28482','#ffd60a','#00f5d4','#9b5de5','#f15bb5','#fee440','#00bbf9','#00f5d4','#b8f2e6','#ffca3a','#8ac926','#1982c4','#6a4c93','#ff595e','#ff924c'];
-      return palette[Math.floor(Math.random()*palette.length)];
-    } else {
-      const palette = ['#8ecae6','#bde0fe','#c1d6f2','#f3c4fb','#ffd6a5','#b9fbc0','#ffc6ff','#caf0f8','#e9edc9','#d0f4de','#a0c4ff','#cfbaf0','#caffbf','#fdffb6','#ffd6a5','#bdb2ff','#fec5bb','#fae1dd','#e5e5e5','#cfd8dc','#b2dfdb','#dcedc8','#ffccbc','#ffe0b2'];
-      return palette[Math.floor(Math.random()*palette.length)];
+  // اندازهٔ بوم = کل صفحه (نه فقط ویوپرت)
+  function resizeCanvasToDocument() {
+    const doc = document.documentElement;
+    const width = Math.max(doc.scrollWidth, doc.clientWidth, window.innerWidth);
+    const height = Math.max(doc.scrollHeight, doc.clientHeight, window.innerHeight);
+    // فقط وقتی تغییر کرده ست کن (برای کارایی)
+    if (canvas.width !== width)  canvas.width  = width;
+    if (canvas.height !== height) canvas.height = height;
+  }
+
+  // رنگ تصادفی مطابق تم فعلی
+  function randomColor() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const pal = theme === 'dark' ? DARK_COLORS : LIGHT_COLORS;
+    return pal[Math.floor(Math.random() * pal.length)];
+  }
+
+  // ساخت یک شکل
+  function createShape(x, y) {
+    const size = 18 + Math.random() * 28;       // 18..46
+    const speed = 0.7 + Math.random() * 1.6;    // سرعت پایه
+    // جهت تصادفی
+    const angle = Math.random() * Math.PI * 2;
+    const dx = Math.cos(angle) * speed;
+    const dy = Math.sin(angle) * speed;
+
+    return {
+      x, y, dx, dy, size,
+      type: SHAPE_TYPES[Math.floor(Math.random() * SHAPE_TYPES.length)],
+      color: randomColor(),
+      rot: Math.random() * Math.PI,            // برای اشکال چندضلعی
+      rotSpeed: (Math.random() - 0.5) * 0.02   // چرخش جزئی
+    };
+  }
+
+  // پرکردن اولیهٔ کل صفحه
+  function seedShapes() {
+    shapes = [];
+    for (let i = 0; i < MAX_SHAPES; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      shapes.push(createShape(x, y));
     }
   }
 
-  function makeShape(x, y) {
-    const size = 12 + Math.random()*28;
-    const type = TYPES[Math.floor(Math.random()*TYPES.length)];
-    const dx = (Math.random()-0.5)*1.8;
-    const dy = (Math.random()-0.5)*1.8;
-    return { x, y, dx, dy, size, type, color: pickColor() };
-  }
-
-  function draw(s) {
+  // رسم یک شکل
+  function drawShape(s) {
     ctx.save();
-    ctx.globalAlpha = 0.25;      // مزاحم خوانایی متن نشه
+    ctx.translate(s.x, s.y);
+    ctx.rotate(s.rot || 0);
+
+    // جلوهٔ دیده‌شدن بهتر
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = s.color;
     ctx.fillStyle = s.color;
-    ctx.beginPath();
-    if (s.type === 'circle') {
-      ctx.arc(s.x, s.y, s.size/2, 0, Math.PI*2);
-      ctx.fill();
-    } else if (s.type === 'square') {
-      ctx.fillRect(s.x - s.size/2, s.y - s.size/2, s.size, s.size);
-    } else {
-      ctx.moveTo(s.x, s.y - s.size/2);
-      ctx.lineTo(s.x - s.size/2, s.y + s.size/2);
-      ctx.lineTo(s.x + s.size/2, s.y + s.size/2);
-      ctx.closePath();
-      ctx.fill();
+    ctx.globalAlpha = 0.85;
+
+    switch (s.type) {
+      case 'circle':
+        ctx.beginPath();
+        ctx.arc(0, 0, s.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      case 'square':
+        ctx.fillRect(-s.size / 2, -s.size / 2, s.size, s.size);
+        break;
+      case 'triangle':
+        ctx.beginPath();
+        const h = s.size * 0.577; // ارتفاع مثلث متساوی‌الاضلاع
+        ctx.moveTo(0, -s.size / 2);
+        ctx.lineTo(-s.size / 2, h);
+        ctx.lineTo(s.size / 2, h);
+        ctx.closePath();
+        ctx.fill();
+        break;
+      case 'hex':
+        ctx.beginPath();
+        const r = s.size / 2;
+        for (let i = 0; i < 6; i++) {
+          const a = (Math.PI / 3) * i;
+          const px = Math.cos(a) * r;
+          const py = Math.sin(a) * r;
+          i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.fill();
+        break;
     }
+
     ctx.restore();
   }
 
-  function tick() {
+  // آپدیت و حرکت
+  function updateShape(s) {
+    s.x += s.dx;
+    s.y += s.dy;
+    s.rot += s.rotSpeed;
+
+    // برخورد با دیواره‌ها + تغییرات تصادفی
+    const hitLeft = s.x - s.size / 2 <= 0;
+    const hitRight = s.x + s.size / 2 >= canvas.width;
+    const hitTop = s.y - s.size / 2 <= 0;
+    const hitBottom = s.y + s.size / 2 >= canvas.height;
+
+    if (hitLeft || hitRight) s.dx *= -1;
+    if (hitTop || hitBottom) s.dy *= -1;
+
+    if (hitLeft || hitRight || hitTop || hitBottom) {
+      if (Math.random() < 0.35) s.color = randomColor();
+      if (Math.random() < 0.25) s.size = 18 + Math.random() * 28;
+      if (Math.random() < 0.20) s.type = SHAPE_TYPES[Math.floor(Math.random() * SHAPE_TYPES.length)];
+    }
+  }
+
+  // حلقهٔ انیمیشن
+  function animate() {
+    rafId = requestAnimationFrame(animate);
+    // اگر ارتفاع/عرض صفحه عوض شد، بوم را تطبیق بده
+    resizeCanvasToDocument();
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (const s of shapes) {
-      s.x += s.dx;
-      s.y += s.dy;
-
-      let hit = false;
-      if (s.x <= 0 || s.x >= canvas.width) { s.dx *= -1; hit = true; }
-      if (s.y <= 0 || s.y >= canvas.height) { s.dy *= -1; hit = true; }
-
-      if (hit) {
-        if (Math.random() < 0.4) s.color = pickColor();
-        if (Math.random() < 0.3) s.size = 12 + Math.random()*28;
-        if (Math.random() < 0.2) s.type = TYPES[Math.floor(Math.random()*TYPES.length)];
-      }
-      draw(s);
+      updateShape(s);
+      drawShape(s);
     }
-    requestAnimationFrame(tick);
   }
 
-  // چند شکل اولیه
-  for (let i = 0; i < 5; i++) {
-    shapes.push(makeShape(Math.random()*canvas.width, Math.random()*canvas.height));
-  }
-  tick();
-
-  // کلیک روی صفحه → شکل جدید
-  document.addEventListener('click', (e) => {
-    const tag = e.target.tagName;
-    if (/(A|BUTTON|INPUT|TEXTAREA|SELECT)/.test(tag)) return; // روی کنترل‌ها اضافه نکن
-    if (shapes.length >= MAX) shapes.shift();
-    shapes.push(makeShape(e.clientX, e.clientY));
+  // کلیک = افزودن شکل جدید (بدون انباشت بیش از حد)
+  canvas.addEventListener('click', (e) => {
+    const x = e.pageX; // چون canvas absolute است
+    const y = e.pageY;
+    if (shapes.length >= MAX_SHAPES) shapes.shift();
+    shapes.push(createShape(x, y));
   });
 
-  // آپدیت تم از بیرون
-  window.updateBgShapesTheme = (newTheme) => {
-    darkMode = (newTheme || '').toLowerCase() === 'dark';
-    for (const s of shapes) if (Math.random() < 0.5) s.color = pickColor();
-  };
+  // تم که عوض شد، رنگ‌ها را تازه کن
+  function refreshColors() {
+    shapes.forEach(s => (s.color = randomColor()));
+  }
+
+  // اکسپورت برای دکمهٔ تغییر تم داخل سایت
+  window.updateShapes = refreshColors;
+
+  // تغییر اندازهٔ محتوا/DOM → تنظیم دوبارهٔ بوم
+  const mo = new MutationObserver(() => resizeCanvasToDocument());
+  mo.observe(document.body, { childList: true, subtree: true });
+
+  // رویدادهای استاندارد
+  window.addEventListener('resize', resizeCanvasToDocument);
+  window.addEventListener('orientationchange', resizeCanvasToDocument);
+
+  // شروع
+  resizeCanvasToDocument();
+  seedShapes();
+  animate();
+
+  // اگر صفحه خیلی بلند است و اسکرول می‌کنی، هر چند ثانیه یک‌بار هم اندازه را چک کن
+  setInterval(resizeCanvasToDocument, 1500);
 })();
