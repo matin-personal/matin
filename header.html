@@ -1,32 +1,14 @@
-<!-- /header.html -->
-<header>
+<header class="site-header">
   <nav class="menu-bar">
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <!-- منوی فارسی -->
-    <div class="menu-items lang-fa">
+    <div class="menu-items" id="menuItems">
       <a href="/index.html">صفحه اصلی</a>
       <a href="/contact/">تماس با من</a>
-    </div>
-
-    <!-- English menu -->
-    <div class="menu-items lang-en">
-      <a href="/en/index.html">Home</a>
-      <a href="/en/contact/">Contact</a>
     </div>
   </nav>
 
   <div class="control-buttons">
-    <!-- دکمه زبان: متن و پرچم با JS ست می‌شود -->
-    <button id="lang-btn" class="lang-button" aria-label="switch language" type="button">
-      <img id="lang-flag" alt="" style="width:24px;height:24px;border-radius:50%;box-shadow:0 0 4px rgba(0,0,0,.25)" />
-      <span class="lang-label" style="margin-inline-start:.5rem"></span>
-    </button>
-
-    <!-- دکمه تم: ایموجی + برچسب با JS آپدیت می‌شود -->
-    <button id="toggle-theme" class="toggle-theme" aria-label="toggle theme" type="button">
-      <span class="theme-emoji" aria-hidden="true">🌙</span>
-      <span class="theme-label" style="margin-inline-start:.4rem">تغییر تم</span>
-    </button>
+    <button id="lang-btn" class="lang-button" type="button"></button>
+    <button id="toggle-theme" class="toggle-theme" type="button"></button>
   </div>
 </header>
